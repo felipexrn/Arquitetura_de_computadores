@@ -15,7 +15,7 @@ class Instrucao:
     self.sa = sa
     self.function = function
     
-# nop = Instrucao("nop",0,0,0,0,0,0)
+nop = Instrucao("nop",0,0,0,0,0,0)
     
 def verifica_istrucao(instrucao):
   instrucoes = ["add", "addi", "addiu", "addu", "and", "andi", "div", "divu", "mul", "mult", "multu", "nop", "nor", "or", "ori", "sll", "slt", "slti", "sltiu", "sltu", "sra", "srl", "sub", "subu", "syscall", "xor", "xori"]

@@ -1,0 +1,12 @@
+Para ler um arquivo txt e gerar um txt podem usar o seguinte:
+
+Python: deixe o programa main.py e arquivo entrada.txt na mesma pasta e digite no terminal de comando:
+
+python main.py < entrada.txt > resultado.txt
+
+----------------------------------------------------------------
+
+C: deixe o programa main.exe e arquivo entrada.txt na mesma pasta e digite no terminal de comando:
+
+Primeiro cocê compila, escrevendo no terminal: gcc programa.c -o programa
+Depois executa escrevendo no terminal; programa < entrada.txt > resultado.txt
