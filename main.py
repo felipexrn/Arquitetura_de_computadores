@@ -1,4 +1,4 @@
-# 11 instruções R [6,rs,rt,rd,5,6] 
+# 11 instruções R [6,rs,rt,rd,5,6] ok
 # 7 instruções I [6,rs,rt,16] ok
 # 1 instrução nop 0 [6,5,5,5,5,6] ok
 # 1 instrução syscall [6,20,01100] ok

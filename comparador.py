@@ -3,7 +3,7 @@ correto = 0
 errado = 0
 mips = open("traducao_mips.txt")
 montador = open("traducao_montador.txt")
-while (linha <= 27):
+while (linha < 27):
   try:
     linha += 1
     base = mips.readline().rstrip()
