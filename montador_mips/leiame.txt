@@ -1,0 +1,10 @@
+O arquivo do montador foi carinhosamente chamado de trivial.py
+O arquivo para teste foi chamado de instrucoes_base.txt
+O arquivo para comparar os resultados do mars e do montador foi chamado de comparador.py
+O arquivo onde se encontram os padrões das instruções foi chamado de padroes.py
+
+Abaixo se encontram as três listas do meu raciocínio inicial para as 27 instruções da primeira etapa do projeto:
+
+nome = ["add", "addi", "addiu", "addu", "and", "andi", "div", "divu", "mul", "mult", "multu", "nop", "nor", "or", "ori", "sll", "slt", "slti", "sltiu", "sltu", "sra", "srl", "sub", "subu", "syscall", "xor", "xori"]
+op_code = [0, 8, 9, 0, 0, 12, 0, 0, 28, 0, 0, 0, 0, 0, 13, 0, 0, 10, 11, 0, 0, 0, 0, 0, 0, 0, 14]
+function = [32,"imediato", "imediato", 33, 36, "imediato", 26, 27, 2, 24, 25, 0, 39, 37, "imediato", 0, 42, "imediato", "imediato", 43, 3, 2, 34, 35, 12, 38, "imediato"]
