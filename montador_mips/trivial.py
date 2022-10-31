@@ -32,7 +32,7 @@ def bin_hex(binario):
     hexadecimal += "{:x}".format(dec)
     bin = bin[4:]
   return hexadecimal
-def monta_executavel(instrucao):
+def monta_instrucao(instrucao):
   nome = ["add", "addi", "addiu", "addu", "and", "andi", "div", "divu", "mul", "mult", "multu", "nop", "nor", "or", "ori", "sll", "slt", "slti", "sltiu", "sltu", "sra", "srl", "sub", "subu", "syscall", "xor", "xori"]
   op_code = [0, 8, 9, 0, 0, 12, 0, 0, 28, 0, 0, 0, 0, 0, 13, 0, 0, 10, 11, 0, 0, 0, 0, 0, 0, 0, 14]
   function = [32,"imediato", "imediato", 33, 36, "imediato", 26, 27, 2, 24, 25, 0, 39, 37, "imediato", 0, 42, "imediato", "imediato", 43, 3, 2, 34, 35, 12, 38, "imediato"]
@@ -102,10 +102,9 @@ def monta_executavel(instrucao):
     fu = function[id_nome]
   return no, op, rs, rt, rd, sa, fu, imediato
 while(True):
-  no = op = rs = rt = rd = sa = fu = 0
   try:
     instrucao = list(input().split())
-    no, op, rs, rt, rd, sa, fu, imediato = monta_executavel(instrucao)
+    no, op, rs, rt, rd, sa, fu, imediato = monta_instrucao(instrucao)
     binario = dec_bin(op, rs, rt, rd, sa, fu, imediato)
     hexadecimal = bin_hex(binario)
     print(hexadecimal)
