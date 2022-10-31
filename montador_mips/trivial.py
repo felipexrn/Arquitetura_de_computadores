@@ -1,11 +1,4 @@
 import padroes 
-# padrões encontrados nas 27 instruções da primeira etapa do projeto 
-# 11 instruções R [6,rs,rt,rd,5,6]
-# 7 instruções I [6,rt,rs,16]
-# 1 instrução nop 0 [6,5,5,5,5,6]
-# 1 instrução syscall [6,5,5,5,5,6]
-# 4 instruções Dupla [6,rs,rt,5,5,6]
-# 3 instruções Sa [6,5,rt,rd,sa,6]
 def dec_bin(op, rs, rt, rd, sa, fu, pa):
   if pa == "I":
     binario = "{:06b}".format(op)
