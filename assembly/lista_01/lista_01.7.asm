@@ -1,6 +1,6 @@
 .text
-# lê inteiro de 4 digitos exibe um digito por linha
-main: addi $2, $0, 5 # lê inteiro
+# lÃª inteiro de 4 digitos exibe um digito por linha
+main: addi $2, $0, 5 # lÃª inteiro
 	syscall
 	addi $8, $0, 10 # armazena 10 em $8
 	

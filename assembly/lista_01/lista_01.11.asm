@@ -1,6 +1,6 @@
 .text
-# Lê um inteiro de 3 algarismos e exibe os algarismos invertidos
-main: addi $2, $0, 5 # lê inteiro
+# LÃª um inteiro de 3 algarismos e exibe os algarismos invertidos
+main: addi $2, $0, 5 # lÃª inteiro
 	syscall
 	addi $8, $0, 10 # armazena base 10 em $8
 	

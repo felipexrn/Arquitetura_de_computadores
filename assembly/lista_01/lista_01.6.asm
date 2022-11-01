@@ -1,6 +1,6 @@
 .text
-# Lê inteiro de 3 algarismos e exibe inteiro com 3 algarismos com zeros completando espaços vazios
-main: addi $2, $0, 5 # lê inteiro
+# LÃª inteiro de 3 algarismos e exibe inteiro com 3 algarismos com zeros completando espaÃ§os vazios
+main: addi $2, $0, 5 # lÃª inteiro
 	syscall
 	addi $8, $0, 10 # armazena 10 em $8
 	

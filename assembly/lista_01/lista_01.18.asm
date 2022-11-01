@@ -1,13 +1,13 @@
 .text
-# lê 2 inteiros mostra o menor entre eles
-main: addi $2, $0, 5 # lê inteiro
+# lÃª 2 inteiros mostra o menor entre eles
+main: addi $2, $0, 5 # lÃª inteiro
 	syscall
 	add $4, $0, $2 # armazena $2 em $4
-	addi $2, $0, 5 # lê inteiro
+	addi $2, $0, 5 # lÃª inteiro
 	syscall
 	
 	sub $8, $4, $2 # subtrai $2 por $4 e armazena em $8
-	srl $9, $8, 31 # desloca $8 31 bits à direita armazena em $9
+	srl $9, $8, 31 # desloca $8 31 bits Ã  direita armazena em $9
 	addi $10, $0, 1 # armazena 1 em $10
 		
 	xor $10, $9, $10 # opera XOR entre $9 e $10

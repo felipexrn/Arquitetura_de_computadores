@@ -1,7 +1,7 @@
 .text
-# lê ano e imprime data da páscoa conforme algoritmo de Meeus/Jones/Butcher
-# \ = divisão inteira, MOD = resto da divisão
-main: addi $2, $0, 5 # lê inteiro
+# lÃª ano e imprime data da pÃ¡scoa conforme algoritmo de Meeus/Jones/Butcher
+# \ = divisÃ£o inteira, MOD = resto da divisÃ£o
+main: addi $2, $0, 5 # lÃª inteiro
 	syscall
 ANO:	add $8, $0, $2 # ANO
 	addi $2, $0, 19 
@@ -62,7 +62,7 @@ L:	mfhi $10 # L = (32 + 2 * e + 2 * i - h - k) MOD 7
 	add $11, $11, $4
 	addi $2, $0, 451
 	div $11, $2
-M:	mflo $11 # m = (a + 11 * h + 22 × L) \ 451
+M:	mflo $11 # m = (a + 11 * h + 22 * L) \ 451
 	addi $9, $0, 7
 	mul $9, $9, $11
 	sub $9, $14, $9
@@ -71,10 +71,10 @@ M:	mflo $11 # m = (a + 11 * h + 22 × L) \ 451
 	add $10, $0, $9
 	addi $2, $0, 31
 	div $9, $2	
-MES:	mflo $9 # MÊS = (h + L - 7 * m + 114) \ 31
+MES:	mflo $9 # Mï¿½S = (h + L - 7 * m + 114) \ 31
 	addi $10, $10, 1
 	div $10, $2
-DIA:	mfhi $10 # DIA = 1+ (h + L - 7 × m + 114)MOD 31			
+DIA:	mfhi $10 # DIA = 1+ (h + L - 7 * m + 114)MOD 31			
 print:	add $4, $0, $10 # armazena DIA em $4
 	addi $2, $0, 1 # imprime $4
 	syscall

@@ -1,6 +1,6 @@
 .text
-# Lê segundos inteiros e exibe hora no formato h:m:s
-main: addi $2, $0, 5 # lê inteiro
+# LÃª segundos inteiros e exibe hora no formato h:m:s
+main: addi $2, $0, 5 # lÃª inteiro
 	syscall
 	addi $8, $0, 58 # armazena valor dec ascii de ':' em $8
 	addi $9, $0, 60 # armazena unidade de tempo em $9

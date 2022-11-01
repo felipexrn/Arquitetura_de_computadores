@@ -1,11 +1,11 @@
 .text
-#Lê dois inteiros e exibe a multipicação dos dois valores
-main: addi $2, $0, 5 # lê inteiro
+#LÃª dois inteiros e exibe a multipicaï¿½o dos dois valores
+main: addi $2, $0, 5 # lÃª inteiro
 	syscall
-	add $4, $0, $2 # armazena no reg de saída de inteiro 
-	addi $2, $0, 5 # lê inteiro
+	add $4, $0, $2 # armazena no reg de saï¿½da de inteiro 
+	addi $2, $0, 5 # lÃª inteiro
 	syscall
-	mul $4, $4, $2 # multiplica o primeiro valor com o segundo e armazena no reg de sáida de inteiro
+	mul $4, $4, $2 # multiplica o primeiro valor com o segundo e armazena no reg de saÃ­da de inteiro
 	addi $2, $0, 1 # exibe inteiro
 	syscall
 	addi $2, $0, 10 # encerra programa
