@@ -5,7 +5,7 @@ O arquivo onde se encontram os padrões das instruções foi chamado de padroes.
 
 # Padrões encontrados nas 27 instruções da primeira etapa do projeto: 
 # 11 instruções do tipo R [6,rs,rt,rd,5,6]
-# 7 instruções do tipo I [6,rt,rs,16]
+# 7 instruções do tipo I [6,rs,rt,16]
 # 4 instruções do tipo Dupla [6,rs,rt,5,5,6]
 # 3 instruções do tipo Sa [6,5,rt,rd,sa,6]
 # 1 instrução nop [6,5,5,5,5,6]
