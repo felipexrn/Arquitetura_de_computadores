@@ -31,7 +31,7 @@ Uma ideia para leitura de arquivos complexos:
 #   pass
 # try:
 #   id_rotulo = linha.index(":")
-#   rotulo = linha[:id_rotulo] # tratar rótulos depois
+#   rotulo = linha[:id_rotulo] # beq obriga a ler todo o arquivo antes de processá-lo
 #   linha = linha[id_rotulo + 1:]
 # except:
 #   pass

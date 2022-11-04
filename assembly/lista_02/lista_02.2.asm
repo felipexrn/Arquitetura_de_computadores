@@ -2,6 +2,7 @@
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0
+  beq $t0 $0 fim
 	add $t1 $0 $t0
 	srl $t1 $t1 31
 	addi $t2 $0 1
