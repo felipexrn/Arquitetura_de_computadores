@@ -39,15 +39,15 @@ fev:	addi $t3 $0 4 # ano bissexto
 	div $t2 $t3
 	mfhi $t4
 	beq $t4 $0 quat
-	addi $t3 $0 400
-	div $t2 $t3
-	mfhi $t4
-	beq $t4 $0 bis
 	j nbis
 quat:	addi $t3 $0 100
 	div $t2 $t3
 	mfhi $t4
 	bne $t4 $0 bis
+	addi $t3 $0 400
+	div $t2 $t3
+	mfhi $t4
+	beq $t4 $0 bis
 nbis:	addi $t3 $0 29
 	slt $t4 $t0 $t3
 	beq $t4 $0 inv 

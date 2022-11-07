@@ -6,15 +6,15 @@ main: addi $v0 $0 5
 	div $t0 $t1
 	mfhi $t2
 	beq $t2 $0 quat
-	addi $t1 $0 400
-	div $t0 $t1
-	mfhi $t2
-	beq $t2 $0 bis
 	j nbis
 quat:	addi $t1 $0 100
 	div $t0 $t1
 	mfhi $t2
 	bne $t2 $0 bis
+	addi $t1 $0 400
+	div $t0 $t1
+	mfhi $t2
+	beq $t2 $0 bis
 nbis:	addi $a0 $0 'n'
 	addi $v0 $0 11
 	syscall
