@@ -4,8 +4,8 @@ linha = 0
 
 def limpa_instrucao(linha_suja):
   linha_limpa = linha_suja
-  linha_limpa = linha_limpa.replace("$", "")
-  linha_limpa = linha_limpa.replace(",", "")
+  linha_limpa = linha_limpa.replace("$", " ")
+  linha_limpa = linha_limpa.replace(",", " ")
   try:
     id_comentario = linha_limpa.index("#")
     linha_limpa = linha_limpa[:id_comentario]
@@ -26,6 +26,14 @@ def limpa_instrucao(linha_suja):
   try:
     if linha_limpa == ".text":
       linha_limpa = ""
+  except:
+    pass
+  linha_limpa = linha_limpa.split()
+  try:
+    for key, value in padroes.rotulos().items():
+      for i in range(len(linha_limpa)):
+        if key == linha_limpa[i]:
+          linha_limpa[i] = value
   except:
     pass
   return linha_limpa
@@ -82,9 +90,9 @@ def monta_instrucao(instrucao):
 while(True):
   try:
     linha_atual = limpa_instrucao(input())
-    if linha_atual != "":
+    if len(linha_atual) > 0:
       linha += 1
-      instrucao = list(linha_atual.split())
+      instrucao = linha_atual
       no, op, rs, rt, rd, sa, fu, pa = monta_instrucao(instrucao)
       binario = dec_bin(op, rs, rt, rd, sa, fu, pa)
       hexadecimal = bin_hex(binario)
