@@ -1,1 +1,0 @@
-# procure pela pasta montador_mips e pelo arquivo leiame.txt
