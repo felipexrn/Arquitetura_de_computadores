@@ -36,10 +36,9 @@ sem:	addi $t3 $0 100
 	div $t4 $t9
 	mflo $t9 # g = b / 4
 	addi $s0 $0 5
-	div $t4 $s0
-	mflo $s0 # h = b * 5
+	mul $s0 $s0 $t4 # h = b * 5
 	add $s1 $t0 $t7
-	add $s1 $s1 $t4
+	add $s1 $s1 $t3
 	add $s1 $s1 $t8
 	add $s1 $s1 $t9
 	add $s1 $s1 $s0 # i = dia + e + a + f + g + h

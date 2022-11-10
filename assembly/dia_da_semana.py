@@ -15,18 +15,26 @@ def dia_semana(h) :
     6 : "Sexta-feira",
   }[h]
   
-if (mes == 1) :
+if (mes == 1):
     mes = 13
     ano = ano - 1
 if (mes == 2):
     mes = 14
     ano = ano - 1
   
-q = dia
-m = mes
-k = ano % 100;
-j = ano // 100;
-h = q + 13 * (m + 1) // 5 + k + k // 4 + j // 4 + 5 * j
-h = h % 7
+a = ano % 100
+b = ano // 100
+c = mes + 1
+d = c * 13
+e = d // 5
+f = a // 4
+g = b // 4
+h = b * 5
+i = dia + e
+i += a 
+i += f
+i += g
+i += h
+k = i % 7
 
-print(dia_semana(h))
+print(dia_semana(k))
