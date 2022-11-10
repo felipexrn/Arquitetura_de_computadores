@@ -1,48 +1,112 @@
 .text
-# Semana = (Dia + 2 * Mes + (3 * (Mes + 1) / 5) + Ano + Ano / 4 - Ano / 100 + Ano / 400 + 2) % 7;
+# Congruência de Zeller para encontrar dia da semana no calendário Juliano e Gregoriano
 main:	addi $v0 $0 5
 	syscall
-	add $t0 $0 $v0 # Dia
+	add $t0 $0 $v0 # dia
 	addi $v0 $0 5
 	syscall
-	add $t1 $0 $v0 # Mes
+	add $t1 $0 $v0 # mês
 	addi $v0 $0 5
 	syscall
-	add $t2 $0 $v0 # Ano
-	
-alg:	addi $t3 $t1 1 # A = Mes + 1
-	addi $t4 $0 5 
-	div $t3 $t4
-	mflo $t4 # B = A / 5
-	addi $t5 $0 3
-	mul $t5 $t5 $t4 # C = B * 3
-	sll $t6 $t1 1 # D = Mes * 2
-	srl $t7 $t2 2 # E = Ano / 4
-	addi $t8 $0 100
-	div $t8 $t2 $t8
-	mflo $t8 # F = Ano / 100
-	addi $t9 $0 400
-	div $t9 $t2 $t9
-	mflo $t9 # G = Ano / 400
-	add $t3 $t0 $t6
-	add $t3 $t3 $t5
-	add $t3 $t3 $t2
-	add $t3 $t3 $t7
-	sub $t3 $t3 $t8
-	add $t3 $t3 $t9
-	addi $t3 $t3 2 # H = Dia + D + C + Ano + E - F + G + 2
-	addi $t4 $0 7
-	div $t3 $t4
-	mfhi $a0 
-	addi $a0 $a0 1 # Semana = H % 7
-	
-	# 1 domingo
-	# 2 segunda
-	# 3 terça
-	# 4 quarta
-	# 5 quinta
-	# 6 sexta
-	# 7 sábado
-	
-pri:	addi $v0 $0 1
+	add $t2 $0 $v0 # ano
+zeller:	addi $t3 $0 1
+	beq $t1 $t3 jan # if (mes == 1) { mes = 13; ano = ano - 1 }
+	addi $t3 $0 2
+	beq $t1 $t3 fev # if (mes == 2) { mes = 14; ano = ano - 1 } 
+	j sem
+jan:	addi $t1 $0 13
+	sub $t2 $t2 1
+	j sem
+fev:	addi $t1 $0 14
+	sub $t2 $t2 1
+sem:	addi $t3 $0 100 
+	div $t2 $t3
+	mfhi $t3 # a = ano MOD 100
+	mflo $t4 # b = ano / 100
+	addi $t5 $t1 1 # c = mes + 1
+	addi $t6 $0 13
+	mul $t6 $t5 $t6 # d = c * 13
+	addi $t7 $0 5
+	div $t6 $t7
+	mflo $t7 # e = d / 5
+	addi $t8 $0 4
+	div $t3 $t8
+	mflo $t8 # f = a / 4
+	addi $t9 $0 4
+	div $t4 $t9
+	mflo $t9 # g = b / 4
+	addi $s0 $0 5
+	div $t4 $s0
+	mflo $s0 # h = b * 5
+	add $s1 $t0 $t7
+	add $s1 $s1 $t4
+	add $s1 $s1 $t8
+	add $s1 $s1 $t9
+	add $s1 $s1 $s0 # i = dia + e + a + f + g + h
+	addi $s2 $0 7
+	div $s1 $s2
+	mfhi $s2 # k = i MOD 7
+car:	addi $v0 $0 11
+pri:	addi $s3 $0 0
+	beq $s3 $s2 sab
+	addi $s3 $0 1
+	beq $s3 $s2 dom
+	addi $s3 $0 2
+	beq $s3 $s2 seg
+	addi $s3 $0 3
+	beq $s3 $s2 ter
+	addi $s3 $0 4
+	beq $s3 $s2 qua
+	addi $s3 $0 5
+	beq $s3 $s2 qui
+	j sex
+dom:	add $a0 $0 'd' # 1 domingo
+	syscall
+	add $a0 $0 'o'
+	syscall
+	add $a0 $0 'm'
+	syscall
+	j fim
+seg:	add $a0 $0 's' # 2 segunda
+	syscall
+	add $a0 $0 'e'
+	syscall
+	add $a0 $0 'g'
+	syscall
+	j fim
+ter:	add $a0 $0 't' # 3 terça
+	syscall
+	add $a0 $0 'e'
+	syscall
+	add $a0 $0 'r'
+	syscall
+	j fim
+qua:	add $a0 $0 'q' # 4 quarta
+	syscall
+	add $a0 $0 'u'
+	syscall
+	add $a0 $0 'a'
+	syscall
+	j fim
+qui:	add $a0 $0 'q' # 5 quinta
+	syscall
+	add $a0 $0 'u'
+	syscall
+	add $a0 $0 'i'
+	syscall
+	j fim
+sex:	add $a0 $0 's' # 6 sexta
+	syscall
+	add $a0 $0 'e'
+	syscall
+	add $a0 $0 'x'
+	syscall
+	j fim
+sab:	add $a0 $0 's' # 0 sábado
+	syscall
+	add $a0 $0 'a'
+	syscall
+	add $a0 $0 'b'
+	syscall
+fim:	addi $v0 $0 10
 	syscall
