@@ -1,4 +1,5 @@
 .text
+# lÃª uma data e mostra a prÃ³xima data e a data anterior
 main: addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0
@@ -8,20 +9,20 @@ main: addi $v0 $0 5
 	addi $v0 $0 5
 	syscall
 	add $t2 $0 $v0
-	addi $t3 $0 1 # dia, mês ou ano menores que 1
+	addi $t3 $0 1 # dia, mï¿½s ou ano menores que 1
 	slt $t4 $t0 $t3
 	bne $t4 $0 fim
 	slt $t4 $t1 $t3
 	bne $t4 $0 fim
 	slt $t4 $t2 $t3
 	bne $t4 $0 fim
-	addi $t3 $0 12 # mês acima de 12
+	addi $t3 $0 12 # mï¿½s acima de 12
 	slt $t4 $t3 $t1
 	bne $t4 $0 fim
 	addi $t3 $0 31 # dia acima de 31
 	slt $t4 $t3 $t0
 	bne $t4 $0 fim
-	addi $t4 $0 8 # mês de 30/31 dias
+	addi $t4 $0 8 # mï¿½s de 30/31 dias
 	div $t1 $t4
 	mflo $t4
 	add $t4 $t4 $t1
@@ -50,7 +51,7 @@ quat:	addi $t3 $0 100
 	mfhi $t4
 	beq $t4 $0 bis
 nbis:	addi $t6 $0 1
-	addi $t3 $0 2 # mês de fevereiro
+	addi $t3 $0 2 # mï¿½s de fevereiro
 	bne $t3 $t1 val
 	addi $t3 $0 29
 	slt $t4 $t0 $t3
@@ -63,7 +64,7 @@ bis:	addi $t6 $0 0
 	slt $t4 $t0 $t3
 	beq $t4 $0 fim 
 	j val
-val:	addi $t3 $0 2 # próxima data
+val:	addi $t3 $0 2 # prï¿½xima data
 	bne $t1 $t3 nf
 	beq $t6 $0 bi 
 	j nbi

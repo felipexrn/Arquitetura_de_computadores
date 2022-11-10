@@ -1,4 +1,5 @@
 .text
+# lê dois inteiros e exibe o maior e a diferença em módulo entre eles
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

@@ -1,10 +1,16 @@
 .text
+# Faça um programa que leia a idade (em anos) e o tempo de serviço de um trabalhador.
+# Informe se ele pode se aposentar (imprima S se sim, e N se não).
+# As condições para aposentadoria são:
+# 1) ter, ao menos, 65 anos; OU
+# 2) ter trabalhado 40 anos; OU
+# 3) ter pelo menos 60 anos e mais de 35 anos.
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0 #idade
 	addi $v0 $0 5
 	syscall
-	add $t1 $0 $v0 #servi�o
+	add $t1 $0 $v0 #servi�o
 	addi $t3 $0 1
 	# $t0 >= 65 OU $t1 >= 40 OU $t0 >= 60 E $t1 >= 35
 idade:addi $t2 $0 64

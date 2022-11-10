@@ -1,4 +1,8 @@
 .text
+# lê três números (entre 0 e 100).
+# Calcula a média ponderada com pesos 1, 2 e 3.
+# Se a média >= 60 imprime a média, depois a letra A.
+# Caso contrário, imprime a média, depois a letra R.
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

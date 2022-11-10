@@ -1,4 +1,6 @@
 .text
+# lê um número inteiro (entre 0 e 9999)
+# Imprime esse número com 4 caracteres, sendo o número alinhado à direita.
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

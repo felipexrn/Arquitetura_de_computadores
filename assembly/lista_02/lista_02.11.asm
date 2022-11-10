@@ -1,4 +1,5 @@
 .text
+# lê 3 numeros informa se há pico positivo, pico negativo ou se não há pico
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

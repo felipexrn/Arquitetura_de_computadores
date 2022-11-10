@@ -1,4 +1,8 @@
 .text
+# Faça um programa que leia três números
+# Informa a média aritmética simples desses três números.
+# Arrendonda o resultado para o inteiro mais próximo.
+# (a partir 0,5 arredonda para o próximo inteiro maior)
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

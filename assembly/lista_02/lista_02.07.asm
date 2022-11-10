@@ -1,4 +1,5 @@
 .text
+# lÃª um nÃºmero inteiro imprime se o ano Ã© bissexto
 main: addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0
@@ -18,7 +19,7 @@ quat:	addi $t1 $0 100
 nbis:	addi $a0 $0 'n'
 	addi $v0 $0 11
 	syscall
-	addi $a0 $0 'ã'
+	addi $a0 $0 'ï¿½'
 	addi $v0 $0 11
 	syscall
 	addi $a0 $0 'o'
@@ -27,7 +28,7 @@ nbis:	addi $a0 $0 'n'
 	addi $a0 $0 ' '
 	addi $v0 $0 11
 	syscall
-bis:	addi $a0 $0 'é'
+bis:	addi $a0 $0 'ï¿½'
 	addi $v0 $0 11
 	syscall
 	addi $a0 $0 ' '

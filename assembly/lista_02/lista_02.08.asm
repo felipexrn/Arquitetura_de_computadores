@@ -1,4 +1,5 @@
 .text
+# lÃª uma data e informa se Ã© vÃ¡lida
 main: addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0
@@ -8,27 +9,27 @@ main: addi $v0 $0 5
 	addi $v0 $0 5
 	syscall
 	add $t2 $0 $v0
-	addi $t3 $0 1 # dia, mês ou ano menores que 1
+	addi $t3 $0 1 # dia, mï¿½s ou ano menores que 1
 	slt $t4 $t0 $t3
 	bne $t4 $0 inv
 	slt $t4 $t1 $t3
 	bne $t4 $0 inv
 	slt $t4 $t2 $t3
 	bne $t4 $0 inv
-	addi $t3 $0 12 # mês acima de 12
+	addi $t3 $0 12 # mï¿½s acima de 12
 	slt $t4 $t3 $t1
 	bne $t4 $0 inv
 	addi $t3 $0 31 # dia acima de 31
 	slt $t4 $t3 $t0
 	bne $t4 $0 inv
-	addi $t4 $0 8 # mês de 30 dias
+	addi $t4 $0 8 # mï¿½s de 30 dias
 	div $t1 $t4
 	mflo $t4
 	add $t4 $t4 $t1
 	addi $t5 $0 2
 	div $t4 $t5
 	mfhi $t5
-	beq $t5 $0 tri # não está claro ainda
+	beq $t5 $0 tri # nï¿½o estï¿½ claro ainda
 	j triu
 tri:	slt $t4 $t0 $t3
 	beq $t4 $0 inv
@@ -65,7 +66,7 @@ inv:	addi $a0 $0 'i'
 val:	addi $a0 $0 'v'
 	addi $v0 $0 11
 	syscall
-	addi $a0 $0 'á'
+	addi $a0 $0 'ï¿½'
 	addi $v0 $0 11
 	syscall
 	addi $a0 $0 'l'

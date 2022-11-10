@@ -1,4 +1,5 @@
 .text
+# lê dois inteiros e informa qual o maior
 main:	addi $v0, $0, 5
 	syscall
 	add $t0, $v0, $0

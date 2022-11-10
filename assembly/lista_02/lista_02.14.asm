@@ -1,4 +1,7 @@
 .text
+# Faça um programa que leia dois números inteiros (entre 0 e 9999)
+# imprime esses números, um após o outro, separados por vírgula, cada um com 4 caracteres
+# sendo cada número alinhado à direita.
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

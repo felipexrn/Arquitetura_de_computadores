@@ -1,4 +1,8 @@
 .text
+# lê duas notas (entre 0 e 100)e as faltas de um aluno em uma disciplina.
+# A média do aluno é calculada ponderadamente, com pesos 2 e 3.
+# A cada 5 faltas o aluno perde 10 pontos.
+# O programa deve informar a média, a penalidade e a média final, uma em cada linha.
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

@@ -1,4 +1,5 @@
 .text
+# lê inteiro e exibe o seu dobro caso positivo e seu quadrado caso seja negativo
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0

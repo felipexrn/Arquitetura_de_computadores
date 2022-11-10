@@ -1,11 +1,13 @@
 .text
-# Congruência de Zeller para encontrar dia da semana no calendário Juliano e Gregoriano
+# lÃª uma data (dia, mÃªs e ano) e informe o dia da semana
+# (trÃªs primeiras letras) em que cai a data. 
+# Congruï¿½ncia de Zeller para encontrar dia da semana no calendï¿½rio Juliano e Gregoriano
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0 # dia
 	addi $v0 $0 5
 	syscall
-	add $t1 $0 $v0 # mês
+	add $t1 $0 $v0 # mï¿½s
 	addi $v0 $0 5
 	syscall
 	add $t2 $0 $v0 # ano
@@ -73,7 +75,7 @@ seg:	add $a0 $0 's' # 2 segunda
 	add $a0 $0 'g'
 	syscall
 	j fim
-ter:	add $a0 $0 't' # 3 terça
+ter:	add $a0 $0 't' # 3 terï¿½a
 	syscall
 	add $a0 $0 'e'
 	syscall
@@ -101,7 +103,7 @@ sex:	add $a0 $0 's' # 6 sexta
 	add $a0 $0 'x'
 	syscall
 	j fim
-sab:	add $a0 $0 's' # 0 sábado
+sab:	add $a0 $0 's' # 0 sï¿½bado
 	syscall
 	add $a0 $0 'a'
 	syscall

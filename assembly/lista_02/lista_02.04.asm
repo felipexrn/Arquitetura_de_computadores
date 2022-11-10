@@ -1,4 +1,5 @@
 .text
+# lê dois números e mostra a relação de grandeza entre eles
 main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0
