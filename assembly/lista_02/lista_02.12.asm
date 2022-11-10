@@ -32,7 +32,11 @@ main:	addi $v0 $0 5
 	addi $v0 $0 11
 	syscall
 	sub $a0 $t5 $a0
-	addi $v0 $0 1
+	slt $t6 $a0 $0
+	bne $t6 $0 n
+	j pri
+n:	addi $a0 $0 0
+pri:	addi $v0 $0 1
 	syscall
 fim:	addi $v0 $0 10
 	syscall
