@@ -4,4 +4,4 @@ def dec_to_bin(decimal, bits):
     binario += str(decimal >> 15-i & 1)
   print(binario)
 
-dec_to_bin(-2, 16)
+dec_to_bin(4521, 16)
