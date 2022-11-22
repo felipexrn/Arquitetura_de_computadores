@@ -4,6 +4,10 @@ main:	addi $v0 $0 5
 	syscall
 	add $t0 $0 $v0
 	
+menmil:	add $t1 $0 1000
+	slt $t1 $v0 $t1
+	beq $t1 $0 end	
+	
 	srl $a0 $t0 31
 	andi $a0 $a0 1
 	addi $v0 $0 1
@@ -162,4 +166,7 @@ main:	addi $v0 $0 5
 	srl $a0 $t0 0
 	andi $a0 $a0 1
 	addi $v0 $0 1
+	syscall
+	
+end:	addi $v0 $0 10
 	syscall

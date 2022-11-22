@@ -5,6 +5,13 @@ main:	addi $v0 $0 5
 	syscall
 	addi $a0 $0 0
 	
+oitob:	addi $t0 $0 10000
+	addi $t2 $0 10000
+	mul $t0 $t0 $t2
+	div $v0 $t0
+	mflo $t0
+	bne $t0 $0 end
+	
 bit7:	addi $t0 $0 10000
 	addi $t2 $0 1000
 	mul $t0 $t0 $t2
