@@ -324,4 +324,3 @@ def get_padrao(nome_instrucao):
   pa = instrucao[id]["padrao"] # R, I, Dupla, Sa
   
   return no, op, rs, rt, rd, sa, fu, pa
-
