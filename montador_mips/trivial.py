@@ -2,6 +2,20 @@ import monta_instrucao, dec_to_bin, bin_to_hex, clean_line
 linhas = []
 linha = 0
 
+instrucoes = open("instrucoes_base.txt")
+lines = []
+line  = 1
+while True:
+  texto = instrucoes.readline().rstrip()
+  if texto.count(":") > 0: 
+    lines.append(texto[:texto.index(":")])
+  else: lines.append(line)
+  line += 1
+  if texto == "":
+    #print(lines)
+    break
+instrucoes.close()
+
 while(True):
   try:
     linha_atual, linhas = clean_line.get_clean_line(input(), linhas)
