@@ -1,12 +1,14 @@
-import limpar
-print("Escreva o nome do arquivo a ser lido.")
+import linhas
 caminho = input()
 programa = open(caminho)
+instrucoes = []
 
 while(True):
   linha = programa.readline().rstrip()
-  linha = limpar.lixo(linha)
-  print(linha)
+  linha, instrucoes = linhas.contar(linha, instrucoes)
   if linha == "":
     break
+
+print(instrucoes)
+
 programa.close()

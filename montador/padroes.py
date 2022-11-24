@@ -24,6 +24,11 @@ def instrucoes(nome):
       "instrucao": "000000std00000100001",
       "padrao": "r",
       "imediato": False
+    },
+    "and": {
+      "instrucao": "000000std00000100100",
+      "padrao": "r",
+      "imediato": False
     }
   }
   if nome in instrucoes:

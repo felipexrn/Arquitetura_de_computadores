@@ -5,4 +5,5 @@ def contar(linha, instrucoes):
     dois_pontos = linha.index(':')
     instrucao = linha[:dois_pontos]
     linha = linha[dois_pontos + 1:] + " "
-  return linha
+  instrucoes.append(instrucao)
+  return linha, instrucoes

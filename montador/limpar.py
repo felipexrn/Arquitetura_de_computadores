@@ -14,4 +14,8 @@ def lixo(linha):
       linha = linha.replace(".data", " ")
     except:
       pass
+  dois_pontos = linha.count(':')
+  if dois_pontos > 0:
+    dois_pontos = linha.index(':')
+    linha = linha[dois_pontos + 1:] + " "
   return linha
