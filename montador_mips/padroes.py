@@ -38,92 +38,92 @@ def rotulos():
 def get_padrao(nome_instrucao):
   _add = {
     "nome": "add",
-    "op_code": 0,
+    "op_code": 0, #000000
     "rs": "$",
     "rt": "$",
     "rd": "$",
-    "sa": 0,
-    "function": 32,
+    "sa": 0, #00000
+    "function": 32, #100000
     "padrao": "R"
   }
   _addi = {
     "nome": "addi",
-    "op_code": 8,
+    "op_code": 8, #001000
     "rs": "$",
     "rt": "$",
-    "rd": 0,
-    "sa": 0,
+    "rd": 0, #00000
+    "sa": 0, #00000
     "function": "imediato",
     "padrao": "I"
   }
   _addiu = {
     "nome": "addiu",
-    "op_code": 9,
+    "op_code": 9, #001001
     "rs": "$",
     "rt": "$",
-    "rd": 0,
-    "sa": 0,
+    "rd": 0, #00000
+    "sa": 0, #00000
     "function": "imediato",
     "padrao": "I"
   }
   _addu = {
     "nome": "addu",
-    "op_code": 0,
+    "op_code": 0, #000000
     "rs": "$",
     "rt": "$",
     "rd": "$",
-    "sa": 0,
-    "function": 33,
+    "sa": 0, #00000
+    "function": 33, #100001
     "padrao": "R"
   }
   _and = {
     "nome": "and",
-    "op_code": 0,
+    "op_code": 0, #000000
     "rs": "$",
     "rt": "$",
     "rd": "$",
-    "sa": 0,
-    "function": 36,
+    "sa": 0, #00000
+    "function": 36, #100100
     "padrao": "R"
   }
   _andi = {
     "nome": "andi",
-    "op_code": 12,
+    "op_code": 12, #001100
     "rs": "$",
     "rt": "$",
-    "rd": 0,
-    "sa": 0,
+    "rd": 0, #00000
+    "sa": 0, #00000
     "function": "imediato",
     "padrao": "I"
   }
   _div = {
     "nome": "div",
-    "op_code": 0,
+    "op_code": 0, #000000
     "rs": "$",
     "rt": "$",
-    "rd": 0,
-    "sa": 0,
-    "function": 26,
+    "rd": 0, #00000
+    "sa": 0, #00000
+    "function": 26, #011010
     "padrao": "Dupla"
   }
   _divu = {
     "nome": "divu",
-    "op_code": 0,
+    "op_code": 0, #000000
     "rs": "$",
     "rt": "$",
-    "rd": 0,
-    "sa": 0,
-    "function": 27,
+    "rd": 0, #00000
+    "sa": 0, #00000
+    "function": 27, #011011
     "padrao": "Dupla"
   }
   _mul = {
     "nome": "mul",
-    "op_code": 28,
+    "op_code": 28, #011100
     "rs": "$",
     "rt": "$",
     "rd": "$",
-    "sa": 0,
-    "function": 2,
+    "sa": 0, #00000
+    "function": 2, #000010
     "padrao": "R"
   }
   _mult = {

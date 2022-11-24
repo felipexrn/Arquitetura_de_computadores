@@ -22,7 +22,7 @@ def get_clean_line(linha_suja, linhas):
     pass
   try:
     if linha_limpa == ".text":
-      linha_limpa = ""
+      linha_limpa = " "
   except:
     pass
   linha_limpa = linha_limpa.split()
