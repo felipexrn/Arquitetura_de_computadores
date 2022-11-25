@@ -1,27 +1,29 @@
-add $0 $1 $2
-addi $3 $4 -123
-addiu $5 $6 -456
-addu $7 $8 $9
-and $10 $11 $12
-andi $13 $14 789
-div $15 $16
-divu $17 $18
-mul $19 $20 $21
-mult $22 $23
-multu $24 $25
+.text
+main:
+add $0, $1, $2 # comentário
+addi $3, $4, -123
+addiu $5, $6, -456
+addu $7, $8, $9
+and $10, $11, $12
+andi $13, $14, 789
+div $15, $16
+divu $17, $18
+mul $19, $20, $21
+mult $22, $23
+multu $24, $25
 nop
-nor $26 $27 $28
-or $29 $30 $31
-ori $0 $1 123
-sll $2 $3 31
-slt $4 $5 $6
-slti $7 $8 -456
-sltiu $9 $10 -789
-sltu $11 $12 $13
-sra $14 $15 31
-srl $16 $17 31
-sub $18 $19 $20
-subu $21 $22 $23
-syscall
-xor $24 $25 $26
-xori $27 $28 123
+  nor $26 $27 $28
+  or $29 $30 $31
+  ori $0 $1 123
+  sll $2 $3 31
+  slt $4 $5 $6
+  slti $7 $8 -456
+  sltiu $9 $10 -789
+  sltu $11 $12 $13
+  sra $14 $15 31
+  srl $16 $17 31
+  sub $18 $19 $20
+  subu $21 $22 $23
+  syscall
+  xor $24 $25 $26
+  xori $27 $28 123
