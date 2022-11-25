@@ -1,4 +1,4 @@
-import monta_instrucao, dec_to_bin, bin_to_hex, clean_line
+import monta_instrucao, dec_to_bin, bin_to_hex, clean_line, padroes
 linhas = []
 linha = 0
 
@@ -17,15 +17,22 @@ while True:
 instrucoes.close()
 
 while(True):
-  try:
+  #try:
     linha_atual, linhas = clean_line.get_clean_line(input(), linhas)
     if len(linha_atual) > 0:
       linha += 1
-      instrucao = linha_atual
-      no, op, rs, rt, rd, sa, fu, pa = monta_instrucao.get_instrucao(instrucao)
-      binario = dec_to_bin.get_bin(op, rs, rt, rd, sa, fu, pa)
-      hexadecimal = bin_to_hex.get_hex(binario)
-      print(hexadecimal)
-  except:
+      instrucao = padroes.get_padrao(linha_atual[0])
+      if "inválida" in instrucao:
+        print(instrucao)
+        exit(0)
+      else:
+
+        # tratar beq, bne e j aqui
+          
+        instrucao = monta_instrucao.get_instrucao(linha_atual, instrucao)
+        binario = dec_to_bin.get_bin(instrucao)
+        hexadecimal = bin_to_hex.get_hex(binario)
+        print(hexadecimal)
+  #except:
     #print(linhas)
-    break
+    #break
