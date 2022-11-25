@@ -1,7 +1,7 @@
 linha = 0
 correto = 0
-mips = open("traducao_mars.txt")
-montador = open("traducao_montador.txt")
+mips = open("./montador_mips/traducao_mars.txt")
+montador = open("./montador_mips/traducao_montador.txt")
 while (True):
   base = mips.readline().rstrip()
   teste = montador.readline().rstrip()
