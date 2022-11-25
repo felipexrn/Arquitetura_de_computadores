@@ -2,7 +2,7 @@ import monta_instrucao, dec_to_bin, bin_to_hex, clean_line, padroes
 linhas = []
 linha = 0
 
-instrucoes = open("instrucoes_base.txt")
+instrucoes = open("./montador_mips/instrucoes_base.txt")
 lines = []
 line  = 1
 while True:

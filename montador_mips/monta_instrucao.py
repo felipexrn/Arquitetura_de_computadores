@@ -1,4 +1,3 @@
-import padroes
 def get_instrucao(instrucao, padrao):
   if padrao["padrao"] == "D": # padrão D
     padrao["rs"] = int(instrucao[1])

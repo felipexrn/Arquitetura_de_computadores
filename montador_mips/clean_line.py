@@ -27,10 +27,8 @@ def get_clean_line(linha_suja, linhas):
     pass
   linha_limpa = linha_limpa.split()
   try:
-    for key, value in padroes.registradores().items():
-      for i in range(len(linha_limpa)):
-        if key == linha_limpa[i]:
-          linha_limpa[i] = value
+    for valor in linha_limpa:
+      valor = padroes.registradores(valor)
   except:
     pass
   return linha_limpa, linhas

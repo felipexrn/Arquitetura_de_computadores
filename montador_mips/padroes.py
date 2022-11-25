@@ -1,5 +1,5 @@
-def registradores():
-  nomes = {
+def registradores(nome):
+  registradores = {
     "zero": 0,
     "at": 1,
     "v0": 2,
@@ -33,7 +33,10 @@ def registradores():
     "fp": 30,
     "ra": 31
   }
-  return nomes
+  if nome in registradores:
+    return registradores[nome]
+  else:
+    return nome
 
 def get_padrao(nome):
   instrucoes = {
