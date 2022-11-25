@@ -40,3 +40,6 @@ Uma ideia para leitura de arquivos complexos:
 #   del istrucao[0]
 # if len(instrucao) > 0:
 # ...
+
+Lembrar de limpar valores ascii nas instruções imediatas
+verificar se o mars está usando instruções extendidas
