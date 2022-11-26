@@ -14,10 +14,10 @@ while (True):
   else:
     zero = ""      
   if base == teste:
-    print(f"Linha {zero}{linha} está correta: {base}")
+    print(f"Linha {zero}{linha} está correta: {teste}")
     correto += 1
   else:
-    print(f"Linha {linha} está ERRADA: {base} != {teste}")
+    print(f"Linha {linha} está ERRADA: {teste} != {base}")
 mips.close()
 montador.close()
 print(str(int(correto/linha*100))+"% de acerto")

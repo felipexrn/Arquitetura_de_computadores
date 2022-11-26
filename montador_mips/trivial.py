@@ -1,38 +1,30 @@
-import monta_instrucao, dec_to_bin, bin_to_hex, clean_line, padroes
-linhas = []
-linha = 0
+from limpar import limpar
+import programa
+from padroes import padrao
+from montar import montar
+from converter import get_bin
+from converter import bin_to_hex
+from linhas import linhas
+from programa import get_linha
+from programa import get_index_rotulo
+from programa import get_programa
 
-instrucoes = open("./montador_mips/instrucoes_base.txt")
-lines = []
-line  = 1
-while True:
-  texto = instrucoes.readline().rstrip()
-  if texto.count(":") > 0: 
-    lines.append(texto[:texto.index(":")])
-  else: lines.append(line)
-  line += 1
-  if texto == "":
-    #print(lines)
-    break
-instrucoes.close()
+dicionario = open("./montador_mips/dic_linhas.py", "w")
 
-while(True):
-  #try:
-    linha_atual, linhas = clean_line.get_clean_line(input(), linhas)
-    if len(linha_atual) > 0:
-      linha += 1
-      instrucao = padroes.get_padrao(linha_atual[0])
-      if "inválida" in instrucao:
-        print(instrucao)
-        exit(0)
-      else:
+instrucoes = linhas() # limpa linhas
+for linha in instrucoes:
+  padrao_mips = padrao(linha[1][0]) # retorna padrão mips da istrução
+  if "inválida" in padrao_mips:
+    print(padrao_mips)
+    exit(0) # encerra programa se houver istrução inválida
+  else:
+    # tratamento de beq, bne e j
+    
+    dicionario.write(str(get_linha(linha[-1]))+"\n") # escreve arquivo de banco 
 
-        # tratar beq, bne e j aqui
-          
-        instrucao = monta_instrucao.get_instrucao(linha_atual, instrucao)
-        binario = dec_to_bin.get_bin(instrucao)
-        hexadecimal = bin_to_hex.get_hex(binario)
-        print(hexadecimal)
-  #except:
-    #print(linhas)
-    #break
+    instrucao = montar(linha[1], padrao_mips, linha) # monta instrução 
+    binario = get_bin(instrucao) # converte para binário 32 bits
+    hexadecimal = bin_to_hex(binario) # converte para hex 8 bits
+    print(hexadecimal)
+    
+dicionario.close()

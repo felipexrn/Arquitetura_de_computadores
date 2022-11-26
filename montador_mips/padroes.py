@@ -38,7 +38,7 @@ def registradores(nome):
   else:
     return nome
 
-def get_padrao(nome):
+def padrao(nome):
   instrucoes = {
     "add": {
       "op_code": 0, #000000
