@@ -13,13 +13,13 @@ def montar(instrucao, padrao, linha):
   elif padrao["padrao"] == "I": # padrão I
     padrao["rs"] = int(instrucao[2])
     padrao["rt"] = int(instrucao[1])
-    if instrucao[0] == "bne" or instrucao[0] == "beq":
+    if instrucao[0] == "bne" or instrucao[0] == "beq": # tratamento de beq e bne
       if get_index_rotulo(instrucao[3]) == "inexistente":
         print(f"{instrucao[3]} inexistente")
         return exit(0)
       padrao["function"] = get_index_rotulo(instrucao[3]) - linha[-1] - 1
     else:
-      padrao["function"] = int(instrucao[3])    
+      padrao["function"] = int(instrucao[3]) 
   elif padrao["padrao"] == "R": # padrão R
     padrao["rs"] = int(instrucao[2])
     padrao["rt"] = int(instrucao[3])

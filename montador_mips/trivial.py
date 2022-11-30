@@ -17,11 +17,8 @@ for linha in instrucoes:
   if "inválida" in padrao_mips:
     print(padrao_mips)
     exit(0) # encerra programa se houver istrução inválida
-  else:
-    # tratamento de beq, bne e j
-    
-    dicionario.write(str(get_linha(linha[-1]))+"\n") # escreve arquivo de banco 
-
+  else: 
+    dicionario.write(str(get_linha(linha[-1]))+"\n") # escreve arquivo de banco de dados
     instrucao = montar(linha[1], padrao_mips, linha) # monta instrução 
     binario = get_bin(instrucao) # converte para binário 32 bits
     hexadecimal = bin_to_hex(binario) # converte para hex 8 bits
