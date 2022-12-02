@@ -1,6 +1,6 @@
 # Faca um programa leia certa quantidade de numeros
-# e imprima o maior deles e quantas vezes o maior número foi lido.
-# A quantidade de números a serem lidos eh fornecida pelo usuario.
+# e imprima o maior deles e quantas vezes o maior nÃºmero foi lido.
+# A quantidade de nÃºmeros a serem lidos eh fornecida pelo usuario.
 .text
 main:	nop # $t0 = contador de maior, $t1 = maior
 	
@@ -21,11 +21,13 @@ for:	beq $t2 $0 prn # $0 = 0; $t2 > $0; $t2--
 	syscall
 	
 menor:	slt $t3 $t1 $v0 # $t1 < $v0? 1:0
-	beq $t3 $0 igual
-	add $t1 $0 $v0 # atualiza maior
-	
+	bne $t3 $0 atM # menor? atM:igual
+
 igual:	beq $t1 $v0 contM
-	addi $t0 $0 1 # reinicia contador
+	j for
+
+atM:	addi $t0 $0 1 # reinicia contador
+	add $t1 $0 $v0 # atualiza maior
 	j for
 	
 contM:	addi $t0 $t0 1 # incrementa contador	
