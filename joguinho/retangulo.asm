@@ -18,93 +18,157 @@
 # estudem funcoes e lacos
 
 .text
-# desenha o ceu com laco e acesso a memoria
-main:	lui $t0 0x1001 # endereço inicial
-	addi $t1 $0 0x78d4e7 # RGB     0x ff ff ff
-	sw $t1 0($t0) # 'pinta' pixel
-	addi $t2 $0 8192 # t (tamanho da tela) 
+main:
+nop 
 		
-tela:	beq $t2 $0 chao # while t > 0
-	sw $t1 0($t0) # 'pinta' pixel
-	addi $t0 $t0 4 # proximo endereco de memoria
-	addi $t2 $t2 -1 # t--
-	j tela	
+ceu:
+addi $a0 $0 0x10010000 # endereco
+addi $a1 $0 0x78d4e7 # RGB 0x ff ff ff
+addi $a2 $0 128 # b
+addi $a3 $0 64 # h
+addi $t0 $0 0 # x
+addi $t1 $0 0 # y
+	
+jal ret
 
 # desenha o chao
-chao:	addi $t1 $0 0xe7c278 # RGB 0x ff ff ff
-	addi $t3 $0 -512 # volta para comeco da linha
-	addi $t4 $0 5 # hc (altura do chao)
-	mul $t5 $t3 $t4 # -2560 pixels
-	add $t0 $t0 $t5 # volta 5 linhas acima da última linha da tela
-	addi $t6 $0 -1 
-	mul $t5 $t5 $t6 # inverte valor
-	srl $t5 $t5 2 # t = 2560 / 4 = 640 espacos de memoria
 	
-c:	beq $t5 $0 retangulo # while t < 0
-	sw $t1 0($t0) # 'pinta' pixel
-	addi $t0 $t0 4 # proximo endereco de memoria
-	addi $t5 $t5 -1 # t--
-	j c	
+addi $a0 $0 0x10010000 # endereco
+addi $a1 $0 0xe7c278 # RGB 0x ff ff ff
+addi $a2 $0 55 # b
+addi $a3 $0 5 # h
+addi $t0 $0 0 # x
+addi $t1 $0 59 # y
+	
+jal chao
 
+addi $a0 $0 0x10010000 # endereco
+addi $a1 $0 0xe7c278 # RGB 0x ff ff ff
+addi $a2 $0 55 # b
+addi $a3 $0 5 # h
+addi $t0 $0 65 # x
+addi $t1 $0 59 # y
+	
+jal chao
+	
+addi $a0 $0 0x10010000 # endereco
+addi $a1 $0 0xe7c278 # RGB 0x ff ff ff
+addi $a2 $0 10 # b
+addi $a3 $0 5 # h
+addi $t0 $0 0 # x
+addi $t1 $0 54 # y
+	
+jal chao
 
-# desenha os retangulos com funcao
-retangulo:
-# retangulo 1
-	lui $a0 0x1001 # endereco
-	addi $t0 $0 50 # x
-	sll $t0 $t0 2 
-	add $a0 $a0 $t0 # inicio + x
-	
-	addi $t0 $0 10 # y
-	sll $t0 $t0 8
-	add $a0 $a0 $t0 # inicio + y
-		
-	addi $a1 $0 0 # cor
-	addi $a2 $0 6 # b
-	add $a3 $0 3 # h
-	
-	jal ret
+j nuvem
 
-# retangulo 2
-	lui $a0 0x1001 # endereco
-	addi $t0 $0 100 # x
-	sll $t0 $t0 2 
-	add $a0 $a0 $t0 # inicio + x
+chao:	
+sw $ra 0($sp)
+addi $sp $sp -4
 	
-	addi $t0 $0 23 # y
-	sll $t0 $t0 8
-	add $a0 $a0 $t0 # inicio + y
-		
-	addi $a1 $0 0xff0000 # cor
-	addi $a2 $0 10 # b
-	add $a3 $0 5 # h
+add $t2 $0 $a2 # b grama
+add $t4 $0 $t0 # x grama
+add $t5 $0 $t1 # y grama
 	
-	jal ret
+jal ret
 	
+addi $a0 $0 0x10010000 # endereco
+addi $a1 $0 0x42d690 # RGB 0x ff ff ff
+add $a2 $0 $t2 # b
+addi $a3 $0 1 # h
+add $t0 $0 $t4 # x
+add $t1 $0 $t5 # y
 	
-end:	addi $v0 $0 10
-	syscall
+jal ret	
+
+addi $sp $sp 4
+lw $ra 0($sp)
+jr $ra
+
+# desenha nuvem com funcao
+nuvem:
+
+addi $a0 $0 0x10010000 # endereco
+addi $t0 $0 50 # x
+addi $t1 $0 10 # y
+addi $a1 $0 0xffffff # cor
+addi $a2 $0 6 # b
+add $a3 $0 3 # h
+	
+jal ret
+
+addi $a0 $0 0x10010000 # endereco
+addi $t0 $0 45 # x
+addi $t1 $0 8 # y
+addi $a1 $0 0xffffff # cor
+addi $a2 $0 10 # b
+add $a3 $0 4 # h
+	
+jal ret
+
+addi $a0 $0 0x10010000 # endereco
+addi $t0 $0 52 # x
+addi $t1 $0 9 # y
+addi $a1 $0 0xffffff # cor
+addi $a2 $0 8 # b
+add $a3 $0 3 # h
+	
+jal ret
+
+addi $a0 $0 0x10010000 # endereco
+addi $t0 $0 48 # x
+addi $t1 $0 7 # y
+addi $a1 $0 0xffffff # cor
+addi $a2 $0 4 # b
+add $a3 $0 4 # h
+	
+jal ret
+
+addi $a0 $0 0x10010000 # endereco
+addi $t0 $0 40 # x
+addi $t1 $0 9 # y
+addi $a1 $0 0xffffff # cor
+addi $a2 $0 7 # b
+add $a3 $0 2 # h
+	
+jal ret
+	
+j end
 
 # funcao para desenhar retangulos
-ret:	add $t0 $0 $a0 # endereco
-	add $t1 $0 $a1 # cor
-	add $t2 $0 $a2 # b
-	add $t3 $0 $a3 # h
+ret:	
+sll $t0 $t0 2 
+add $t0 $t0 $a0 # inicio + x
+sll $t1 $t1 9
+add $t0 $t0 $t1 # inicio + y
+add $a0 $0 $t0 # endereco
+add $t0 $0 $a0 
+add $t1 $0 $a1 # cor
+add $t2 $0 $a2 # b
+add $t3 $0 $a3 # h
 
-laco1:	beq $t3 $0 fimret
-laco2:	beq $t2 $0 fimlaco2
+laco1:	
+beq $t3 $0 fimret
+laco2:	
+beq $t2 $0 fimlaco2
 	
-	sw $t1 0($t0) # 'pinta' pixel
-	addi $t0 $t0 4 # proximo endereco de memoria
+sw $t1 0($t0) # 'pinta' pixel
+addi $t0 $t0 4 # proximo endereco de memoria
 
-	addi $t2 $t2 -1 # x--
-	j laco2
+addi $t2 $t2 -1 # x--
+j laco2
+
 fimlaco2:
-	addi $t0 $t0 512 # proxima linha 
-	sll $t7 $a2 2 # x * 4 (endereco de mem)
-	sub $t0 $t0 $t7 # volta para inicio
-	add $t2 $0 $a2 # x = b
-	addi $t3 $t3 -1 # y--
-	j laco1
+addi $t0 $t0 512 # proxima linha 
+sll $t7 $a2 2 # x * 4 (endereco de mem)
+sub $t0 $t0 $t7 # volta para inicio
+add $t2 $0 $a2 # x = b
+addi $t3 $t3 -1 # y--
+j laco1
 
-fimret:	 jr $ra # retorno da funcao
+fimret:	 
+jr $ra # retorno da funcao
+
+end:	
+addi $v0 $0 10
+syscall
