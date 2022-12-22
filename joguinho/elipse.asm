@@ -2,12 +2,16 @@
 .text
 main:
 # propriedades graficas
-	addi $t0 $0 512 # width tela
-	addi $t1 $0 256 # height tela
-	addi $t2 $0 4 # proporcao pixels
+	addi $t0 $0 1024 # width tela
+	addi $t1 $0 512 # height tela
+	addi $t2 $0 1 # proporcao pixels
 #ajuste de proporcao
-	mul $t0 $t0 $t2
-	mul $t1 $t1 $t2
+	div $t0 $t2
+	mflo $t0 
+	div $t1 $t2
+	mflo $t1 
+	sll $t0 $t0 2
+	sll $t1 $t1 2
 	
 # teste de resolucao	
 	addi $at $0 0
@@ -47,22 +51,22 @@ continue:
 	lui $a0 0x1001 # endereco inicial do centro
 
 	addi $t3 $0 150 # x (deslocamento no eixo x a partir do inicio)
-	addi $t4 $0 150 # y (deslocamento no eixo y a partir do inicio)
+	addi $t4 $0 20 # y (deslocamento no eixo y a partir do inicio)
 	sll $t5 $t3 2 # x * 4 (x memorias) 
 	add $a0 $a0 $t5 # deslocamento do inicio por x
 	mul $t5 $t4 $t0 # y * width
 	add $a0 $a0 $t5 # deslocamento do inicio por y
 
 	addi $a1 $0 0xff0000 # cor do circulo
-	addi $a2 $0 150 # raio do circulo
+	addi $a2 $0 50 # raio do circulo
 
 	jal elip # chama funcao circ
 
 # parametros da funcao circ2
 	lui $a0 0x1001 # endereco inicial do centro
 
-	addi $t3 $0 70 # x (deslocamento no eixo x a partir do inicio)
-	addi $t4 $0 35 # y (deslocamento no eixo y a partir do inicio)
+	addi $t3 $0 100 # x (deslocamento no eixo x a partir do inicio)
+	addi $t4 $0 100 # y (deslocamento no eixo y a partir do inicio)
 	sll $t5 $t3 2 # x * 4 (x memorias) 
 	add $a0 $a0 $t5 # deslocamento do inicio por x
 	mul $t5 $t4 $t0 # y * width
