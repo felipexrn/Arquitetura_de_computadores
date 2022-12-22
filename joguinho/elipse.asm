@@ -1,4 +1,4 @@
-# programa com funcao para desenhar circulos
+# programa com funcao para desenhar elipses
 .text
 main:
 # propriedades graficas
