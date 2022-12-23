@@ -74,7 +74,7 @@ storescreen:
 	jr $ra
 
 
-cenario1: # cenário 1
+cenario1: # cenï¿½rio 1
 
 	sw $ra 0($sp)
 	addi $sp $sp -4
@@ -223,7 +223,7 @@ terreno1:
 	lw $ra 0($sp)
 	jr $ra
 	
-cenario2: # cenário 2
+cenario2: # cenï¿½rio 2
 
 	sw $ra 0($sp)
 	addi $sp $sp -4
@@ -1055,6 +1055,40 @@ traco:
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
+	
+	
+portaand:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+portaor:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+
+portanot:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+
 
 # fim do programa
 
