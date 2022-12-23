@@ -6,25 +6,45 @@ main: nop
 	addi $s1 $0 256 # height
 	addi $s2 $0 1 # proporcao
 	div $s0 $s2
-	mflo $s3 
+	mflo $s3 # h
 	div $s1 $s2
-	mflo $s4 
+	mflo $s4 # w
 	#sll $s3 $s3 2 # w
 	#sll $s4 $s4 2 # h
 
 # cenarios
-	addi $a1 $0 0 # 1 mapa de bits. 0 funcoes
-	beq $a1 $0 cenario1
+	
+	addi $a0 $0 1 # local a ser guardado o cenario
+	jal storescreen
+	jal cenario1
+	
+	addi $a0 $0 2 # local a ser guardado o cenario
+	jal storescreen
+	jal cenario2
+	
+	addi $v0 $0 1
+menu:	beq $v0 $0 end
+	
+	add $v0 $0 5 # escolha o cenario
+	syscall
 
-	addi $a0 $0 1 # numero cenario a ser carregado
+	add $a0 $0 $v0 # numero cenario a ser carregado
+	jal loadscreen
+	
+	j menu
 
-loadscreem:
+# funcao para carregar cenario na tela
+
+loadscreen:
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
 	sll $a0 $a0 2 # byte de memoria
 	mul $a1 $s3 $s4 # tamanho da tela
 	mul $a0 $a0 $a1 # offset de memoria ate o cenario
 	addi $a0 $a0 0x10010000 # endereco inicial do cenario
 	lui $a2 0x1001 # inicio da escrita
-
+	
 loadpix:
 	beq $a1 $0 fimloadpix
 	lw $a3 0($a0) # copia cenario
@@ -34,17 +54,33 @@ loadpix:
 	addi $a1 $a1 -1 # variavel de iteracao
 	j loadpix
 fimloadpix:
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
 
+# funcao para guardar cenario na memoria
 
-# fazer aqui funcao para guardar cenario na memoria
+storescreen:
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	sll $a0 $a0 2 # byte de memoria
+	mul $a1 $s3 $s4 # tamanho da tela
+	mul $a0 $a0 $a1 # offset de memoria ate o cenario
+	addi $v1 $a0 0x10010000 # endereco da escrita
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
 
-
-	j end
 
 cenario1: # cenário 1
 
-ceu:
-	addi $a0 $0 0x10010000 # endereco
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+ceu1:
+	add $a0 $0 $v1 # endereco
 	addi $a1 $0 0x78d4f9 # RGB 0x ff ff ff cor do ceu
 	addi $a2 $0 128 # b
 	addi $a3 $0 64 # h
@@ -53,10 +89,10 @@ ceu:
 	
 	jal ret
 	
-sol:	addi $t0 $0 7 # raio
+sol1:	addi $t0 $0 7 # raio
 	add $t1 $0 $t0 
 	addi $t2 $0 3 # pi
-	addi $a0 $0 0x10010000 # inicio
+	add $a0 $0 $v1 # inicio
 	addi $t4 $0 67 # x
 	sll $t4 $t4 2
 	addi $t5 $0 9 # y
@@ -68,12 +104,12 @@ sol:	addi $t0 $0 7 # raio
 
 	jal circ
 
-lua:
+lua0:
 
 	addi $t0 $0 6 # raio
 	add $t1 $0 $t0 
 	addi $t2 $0 3 # pi
-	addi $a0 $0 0x10010000 # inicio
+	add $a0 $0 $v1 # inicio
 	addi $t4 $0 67 # x
 	sll $t4 $t4 2
 	addi $t5 $0 9 # y
@@ -85,7 +121,8 @@ lua:
 
 	#jal circ
 	
-nuvens:
+nuvens1:
+	addi $s5 $0 0xffffff # cor
 	
 	addi $t0 $0 40 # x
 	addi $t1 $0 9 # y
@@ -104,8 +141,12 @@ nuvens:
 	
 # desenha o chao
 
-terreno:
-	addi $a0 $0 0x10010000 # endereco
+terreno1:
+
+	addi $s5 $0 0xe7c278 # RGB 0x ff ff ff cor do chao
+	addi $s6 $0 0x21d648 # RGB 0x ff ff ff cor da grama
+	
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 55 # b
 	addi $a3 $0 5 # h
 	addi $t0 $0 0 # x
@@ -113,7 +154,7 @@ terreno:
 	
 	jal chao
 
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 55 # b
 	addi $a3 $0 5 # h
 	addi $t0 $0 65 # x
@@ -121,7 +162,7 @@ terreno:
 	
 	jal chao
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 10 # b
 	addi $a3 $0 5 # h
 	addi $t0 $0 0 # x
@@ -129,7 +170,7 @@ terreno:
 	
 	jal chao
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 10 # b
 	addi $a3 $0 5 # h
 	addi $t0 $0 83 # x
@@ -137,7 +178,7 @@ terreno:
 	
 	jal chao
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 45 # b
 	addi $a3 $0 4 # h
 	addi $t0 $0 40 # x
@@ -145,7 +186,7 @@ terreno:
 	
 	jal chao
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 35 # b
 	addi $a3 $0 4 # h
 	addi $t0 $0 0 # x
@@ -154,7 +195,7 @@ terreno:
 	jal chao
 	
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 35 # b
 	addi $a3 $0 4 # h
 	addi $t0 $0 93 # x
@@ -162,7 +203,7 @@ terreno:
 	
 	jal chao
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 7 # b
 	addi $a3 $0 5 # h
 	addi $t0 $0 20 # x
@@ -170,7 +211,7 @@ terreno:
 	
 	jal chao
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $a2 $0 7 # b
 	addi $a3 $0 5 # h
 	addi $t0 $0 93 # x
@@ -178,8 +219,250 @@ terreno:
 	
 	jal chao
 
-	j end
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+cenario2: # cenário 2
 
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+ceu2:
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0x01077a # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 128 # b
+	addi $a3 $0 64 # h
+	addi $t0 $0 0 # x
+	addi $t1 $0 0 # y
+	
+	jal ret
+	
+estrelas1:
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 2 # x
+	addi $t1 $0 2 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 7 # x
+	addi $t1 $0 15 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 25 # x
+	addi $t1 $0 12 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 115 # x
+	addi $t1 $0 25 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 110 # x
+	addi $t1 $0 6 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 95 # x
+	addi $t1 $0 17 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 37 # x
+	addi $t1 $0 35 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 55 # x
+	addi $t1 $0 45 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+	add $a0 $0 $v1 # endereco
+	addi $t0 $0 77 # x
+	addi $t1 $0 35 # y
+	addi $a1 $0 0xffff88 # cor
+	addi $a2 $0 1 # b
+	add $a3 $0 1 # h
+	
+	jal ret
+	
+lua1:	addi $t0 $0 7 # raio
+	add $t1 $0 $t0 
+	addi $t2 $0 3 # pi
+	add $a0 $0 $v1 # inicio
+	addi $t4 $0 75 # x
+	sll $t4 $t4 2
+	addi $t5 $0 15 # y
+	sll $t5 $t5 9
+	add $a0 $a0 $t4
+	add $a0 $a0 $t5 
+	add $t6 $0 $a0 # inicio
+	addi $a1 $0 0xffff00 # cor
+
+	jal circ
+
+lua2:
+
+	addi $t0 $0 7 # raio
+	add $t1 $0 $t0 
+	addi $t2 $0 3 # pi
+	add $a0 $0 $v1 # inicio
+	addi $t4 $0 78 # x
+	sll $t4 $t4 2
+	addi $t5 $0 15 # y
+	sll $t5 $t5 9
+	add $a0 $a0 $t4
+	add $a0 $a0 $t5 
+	add $t6 $0 $a0 # inicio
+	addi $a1 $0 0x01077a # cor
+
+	jal circ
+	
+nuvens2:
+	addi $s5 $0 0xaaaaaa # cor
+	
+	addi $t0 $0 47 # x
+	addi $t1 $0 10 # y
+
+	jal nuvem
+	
+	addi $t0 $0 17 # x
+	addi $t1 $0 4 # y
+
+	jal nuvem
+	
+	addi $t0 $0 88 # x
+	addi $t1 $0 8 # y
+
+	jal nuvem
+	
+# desenha o chao
+
+terreno2:
+
+	addi $s5 $0 0xa87900 # RGB 0x ff ff ff cor do chao
+	addi $s6 $0 0x088000 # RGB 0x ff ff ff cor da grama
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 30 # b
+	addi $a3 $0 5 # h
+	addi $t0 $0 0 # x
+	addi $t1 $0 59 # y
+	
+	jal chao
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 15 # b
+	addi $a3 $0 5 # h
+	addi $t0 $0 45 # x
+	addi $t1 $0 59 # y
+	
+	jal chao
+
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 55 # b
+	addi $a3 $0 5 # h
+	addi $t0 $0 73 # x
+	addi $t1 $0 59 # y
+	
+	jal chao
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 10 # b
+	addi $a3 $0 5 # h
+	addi $t0 $0 0 # x
+	addi $t1 $0 54 # y
+	
+	jal chao
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 10 # b
+	addi $a3 $0 5 # h
+	addi $t0 $0 80 # x
+	addi $t1 $0 54 # y
+	
+	jal chao
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 45 # b
+	addi $a3 $0 4 # h
+	addi $t0 $0 40 # x
+	addi $t1 $0 25 # y
+	
+	jal chao
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 35 # b
+	addi $a3 $0 4 # h
+	addi $t0 $0 0 # x
+	addi $t1 $0 40 # y
+	
+	jal chao
+	
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 35 # b
+	addi $a3 $0 4 # h
+	addi $t0 $0 93 # x
+	addi $t1 $0 40 # y
+	
+	jal chao
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 7 # b
+	addi $a3 $0 5 # h
+	addi $t0 $0 45 # x
+	addi $t1 $0 54 # y
+	
+	jal chao
+	
+	add $a0 $0 $v1 # endereco
+	addi $a2 $0 7 # b
+	addi $a3 $0 10 # h
+	addi $t0 $0 73 # x
+	addi $t1 $0 49 # y
+	
+	jal chao
+
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+# funcao desenha chao
 chao:	
 	sw $ra 0($sp)
 	addi $sp $sp -4
@@ -188,12 +471,12 @@ chao:
 	add $t4 $0 $t0 # x grama
 	add $t5 $0 $t1 # y grama
 	
-	addi $a1 $0 0xe7c278 # RGB 0x ff ff ff cor do chï¿½o
+	add $a1 $0 $s5 # RGB 0x ff ff ff cor do chao
 	
 	jal ret
 	
-	addi $a0 $0 0x10010000 # endereco
-	addi $a1 $0 0x21d648 # RGB 0x ff ff ff cor da grama
+	add $a0 $0 $v1 # endereco
+	add $a1 $0 $s6 # RGB 0x ff ff ff cor da grama
 	add $a2 $0 $t2 # b
 	addi $a3 $0 1 # h
 	add $t0 $0 $t4 # x
@@ -215,46 +498,46 @@ nuvem:
 	add $t6 $0 $t1 # y # 9
 	#addi $a0 $0 0x10010000 # endereco
 	
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	add $t0 $0 $t5 # x
 	add $t1 $0 $t6 # y
-	addi $a1 $0 0xffffff # cor
+	add $a1 $0 $s5 # cor
 	addi $a2 $0 7 # b
 	add $a3 $0 2 # h
 	
 	jal ret
 
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $t0 $t5 10 # x
 	addi $t1 $t6 1 # y
-	addi $a1 $0 0xffffff # cor
+	add $a1 $0 $s5 # cor
 	addi $a2 $0 6 # b
 	add $a3 $0 3 # h
 	
 	jal ret
 
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $t0 $t5 5 # x
 	addi $t1 $t6 -1 # y
-	addi $a1 $0 0xffffff # cor
+	add $a1 $0 $s5 # cor
 	addi $a2 $0 10 # b
 	add $a3 $0 4 # h
 	
 	jal ret
 
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $t0 $t5 12 # x
 	addi $t1 $t6 0 # y
-	addi $a1 $0 0xffffff # cor
+	add $a1 $0 $s5 # cor
 	addi $a2 $0 8 # b
 	add $a3 $0 3 # h
 	
 	jal ret
 
-	addi $a0 $0 0x10010000 # endereco
+	add $a0 $0 $v1 # endereco
 	addi $t0 $t5 8 # x
 	addi $t1 $t6 -2 # y
-	addi $a1 $0 0xffffff # cor
+	add $a1 $0 $s5 # cor
 	addi $a2 $0 4 # b
 	add $a3 $0 4 # h
 	
@@ -263,7 +546,6 @@ nuvem:
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
-	
 
 # funcao para desenhar retangulos
 ret:	
@@ -300,7 +582,7 @@ fimret:
 	jr $ra # retorno da funcao
 
 
-# funcao que desenha circulos
+# funcao que desenha elipses
 
 circ:
 	sw $ra 0($sp)
@@ -317,7 +599,7 @@ q4:
 
 	sub $a2 $t0 $t3 # tamanho
 
-	jal linhap
+	jal linhad
 
 	add $t6 $t6 $s0
 	sub $a2 $t0 $t3
@@ -340,7 +622,7 @@ q1:
 
 	sub $a2 $t0 $t3 # tamanho
 
-	jal linhap
+	jal linhad
 
 	sub $t6 $t6 $s0
 	sub $a2 $t0 $t3
@@ -364,7 +646,7 @@ q2:
 
 	sub $a2 $t0 $t3 # tamanho
 
-	jal linhan
+	jal linhae
 
 	sub $t6 $t6 $s0
 	sub $a2 $t0 $t3
@@ -388,7 +670,7 @@ q3:
 
 	sub $a2 $t0 $t3 # tamanho
 
-	jal linhan
+	jal linhae
 
 	add $t6 $t6 $s0
 	sub $a2 $t0 $t3
@@ -404,32 +686,32 @@ fimq3:
 
 # funcao que desenha linhas a direita
 
-linhap:
+linhad:
 	sw $ra 0($sp)
 	addi $sp $sp -4
-lp:
-	beq $a2 $0 fimlp
+ld:
+	beq $a2 $0 fimld
 	sw $a1 0($t6)
 	addi $t6 $t6 4
 	addi $a2 $a2 -1
-	j lp
-fimlp: 
+	j ld
+fimld: 
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
 	
 # funcao que desenha linhas a esquerda
 
-linhan:
+linhae:
 	sw $ra 0($sp)
 	addi $sp $sp -4
-ln:
-	beq $a2 $0 fimln
+le:
+	beq $a2 $0 fimle
 	sw $a1 0($t6)
 	addi $t6 $t6 -4
 	addi $a2 $a2 -1
-	j ln
-fimln: 
+	j le
+fimle: 
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
