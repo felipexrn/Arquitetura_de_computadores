@@ -457,6 +457,46 @@ terreno2:
 	addi $t1 $0 49 # y
 	
 	jal chao
+	
+n0:	addi $t8 $0 1 # proporcao
+	addi $t5 $0 10 # x
+	addi $t6 $0 10 # y
+	addi $v1 $v1 0 # inicio
+	addi $s5 $0 0xeeeeee # cor
+	
+	jal numzero
+	
+n1:	addi $t8 $0 1 # proporcao
+	addi $t5 $0 16 # x
+	addi $t6 $0 10 # y
+	addi $v1 $v1 0 # inicio
+	addi $s5 $0 0xeeeeee # cor
+	
+	jal numum
+	
+n2:	addi $t8 $0 1 # proporcao
+	addi $t5 $0 22 # x
+	addi $t6 $0 10 # y
+	addi $v1 $v1 0 # inicio
+	addi $s5 $0 0xeeeeee # cor
+	
+	jal numdois
+	
+n3:	addi $t8 $0 1 # proporcao
+	addi $t5 $0 28 # x
+	addi $t6 $0 10 # y
+	addi $v1 $v1 0 # inicio
+	addi $s5 $0 0xeeeeee # cor
+	
+	jal numtres
+	
+n8:	addi $t8 $0 1 # proporcao
+	addi $t5 $0 34 # x
+	addi $t6 $0 10 # y
+	addi $v1 $v1 0 # inicio
+	addi $s5 $0 0xeeeeee # cor
+	
+	jal numoito
 
 	addi $sp $sp 4
 	lw $ra 0($sp)
@@ -715,7 +755,306 @@ fimle:
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
+	
+#funcoes para desenhar numeros
+numeros:
+	addi $t8 $0 1 # proporcao
+	addi $t5 $0 10 # x
+	addi $t6 $0 10 # y
+	addi $v1 $v1 0 # inicio
+	addi $s5 $0 0xdddddd # cor
+	
+numzero:	
 
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	jal numum
+	
+	addi $v0 $0 -2 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 -1 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $v0 $0 0 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 10 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $v0 $0 2 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 -9 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0 
+	
+	addi $t5 $t5 0 # x
+	addi $t9 $0 -6
+	mul $t9 $t9 $t8
+	add $t5 $t5 $t9
+	addi $t6 $t6 0 # y
+	
+	jal numum
+
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+numum:
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	addi $t5 $t5 0 # x
+	addi $t9 $0 3
+	mul $t9 $t9 $t8
+	add $t5 $t5 $t9
+	addi $t6 $t6 0 # y
+
+	jal barrasup
+	
+	jal barrainf
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+numdois:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	jal barrainf
+	
+	addi $v0 $0 1 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 -1 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $v0 $0 0 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 5 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $v0 $0 0 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 5 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $v0 $0 -1 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 -9 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	addi $t5 $t5 0 # x
+	addi $t9 $0 3
+	mul $t9 $t9 $t8
+	add $t5 $t5 $t9
+	addi $t6 $t6 0 # y
+	
+	jal barrasup
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+numtres:
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	jal numum
+	
+	
+	addi $v0 $0 -2 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 -1 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $v0 $0 0 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 5 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $v0 $0 0 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 5 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+numquatro:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+numcinco:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+numseis:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+numsete:
+
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+numoito:
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	jal numzero
+	
+	addi $v0 $0 1 # x
+	mul $v0 $t8 $v0 
+	add $t5 $t5 $v0 
+	addi $v0 $0 4 # y
+	mul $v0 $t8 $v0 
+	add $t6 $t6 $v0
+	
+	jal traco
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+numnove:	
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+	
+barrasup:	
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+	add $a0 $0 $v1 # endereco
+	addi $t0 $t5 0 # x
+	addi $t1 $t6 0 # y
+	add $a1 $0 $s5 # cor
+	addi $a2 $0 1 # b
+	mul $a2 $a2 $t8
+	add $a3 $0 4 # h
+	mul $a3 $a3 $t8
+	
+	jal ret
+
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+
+barrainf:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+	add $a0 $0 $v1 # endereco
+	addi $t0 $t5 0 # x
+	add $t1 $t6 0 # y
+	addi $t9 $0 5
+	mul $t9 $t9 $t8
+	add $t1 $t1 $t9
+	addi $a2 $0 1 # b
+	mul $a2 $a2 $t8
+	add $a3 $0 4 # h
+	mul $a3 $a3 $t8
+	
+	jal ret
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+traco:
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+	add $a0 $0 $v1 # endereco
+	addi $t0 $t5 0 # x
+	addi $t1 $t6 0 # y
+	add $a1 $0 $s5 # cor
+	addi $a2 $0 2 # b
+	mul $a2 $a2 $t8
+	add $a3 $0 1 # h
+	mul $a3 $a3 $t8
+	
+	jal ret	
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
 
 # fim do programa
 
