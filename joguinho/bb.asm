@@ -22,6 +22,10 @@ main: nop
 	jal storescreen
 	jal cenario2
 	
+	addi $a0 $0 3 # local a ser guardado o cenario
+	jal storescreen
+	jal cenario3
+	
 	addi $v0 $0 1
 menu:	beq $v0 $0 end
 	
@@ -30,6 +34,20 @@ menu:	beq $v0 $0 end
 
 	add $a0 $0 $v0 # numero cenario a ser carregado
 	jal loadscreen
+	
+# teste de atraso do desenho
+
+	addi $s6 $0 100000 # taxa de atraso
+	jal timer
+	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	addi $t8 $0 1 # proporcao
+	addi $t5 $0 10 # x
+	addi $t6 $0 30 # y
+	addi $v1 $v1 0 # inicio
+	addi $s5 $0 0xeeeeee # cor
+	
+	jal numzero
 	
 	j menu
 
@@ -74,7 +92,7 @@ storescreen:
 	jr $ra
 
 
-cenario1: # cenï¿½rio 1
+cenario1: # cenario 1
 
 	sw $ra 0($sp)
 	addi $sp $sp -4
@@ -223,7 +241,7 @@ terreno1:
 	lw $ra 0($sp)
 	jr $ra
 	
-cenario2: # cenï¿½rio 2
+cenario2: # cenario 2
 
 	sw $ra 0($sp)
 	addi $sp $sp -4
@@ -457,6 +475,16 @@ terreno2:
 	addi $t1 $0 49 # y
 	
 	jal chao
+	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+cenario3: # cenario 3
+
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
 	
 n0:	addi $t8 $0 1 # proporcao
 	addi $t5 $0 10 # x
@@ -992,7 +1020,7 @@ numnove:
 	lw $ra 0($sp)
 	jr $ra
 
-	
+# funcoes para desenhar segmentos retos
 barrasup:	
 
 	sw $ra 0($sp)
@@ -1056,7 +1084,7 @@ traco:
 	lw $ra 0($sp)
 	jr $ra
 	
-	
+# funcoes para desenhar portas lógicas	
 portaand:
 
 	sw $ra 0($sp)
@@ -1088,7 +1116,34 @@ portanot:
 	lw $ra 0($sp)
 	jr $ra
 
+#funcao para passar tempo
+timer:	
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	add $s6 $s6 $0 # taxa de atraso
+	
+fortimer:
 
+	beq $s6 $0 fimtimer 
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        addi $s6, $s6, -1
+        j fortimer
+              
+fimtimer:
+
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
 
 # fim do programa
 
