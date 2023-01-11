@@ -31,6 +31,8 @@ menu:	beq $v0 $0 end
 	
 	add $v0 $0 5 # escolha o cenario
 	syscall
+	
+	beq $v0 $0 end # encerra programa ao digitar 0
 
 	add $a0 $0 $v0 # numero cenario a ser carregado
 	jal loadscreen
@@ -529,6 +531,40 @@ n8:	addi $t8 $0 1 # proporcao
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
+	
+# funcao para carregar uma area retangular da memoria
+loadretmemo:	
+	sll $t0 $t0 2 
+	add $t0 $t0 $a0 # inicio + x
+	sll $t1 $t1 9
+	add $t0 $t0 $t1 # inicio + y
+	add $a0 $0 $t0 # endereco
+	add $t0 $0 $a0 
+	add $t1 $0 $a1 # cor
+	add $t2 $0 $a2 # b
+	add $t3 $0 $a3 # h
+
+laco1loadretmemo:	
+	beq $t3 $0 fimloadretmemo
+laco2loadretmemo:	
+	beq $t2 $0 fimlaco2loadretmemo
+	
+	sw $t1 0($t0) # 'pinta' pixel
+	addi $t0 $t0 4 # proximo endereco de memoria
+
+	addi $t2 $t2 -1 # x--
+	j laco2loadretmemo
+
+fimlaco2loadretmemo:
+	add $t0 $t0 $s0 # proxima linha 
+	sll $t7 $a2 2 # x * 4 (endereco de mem)
+	sub $t0 $t0 $t7 # volta para inicio
+	add $t2 $0 $a2 # x = b
+	addi $t3 $t3 -1 # y--
+	j laco1loadretmemo
+
+fimloadretmemo:	 
+	jr $ra # retorno da funcao
 
 # funcao desenha chao
 chao:	
