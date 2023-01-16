@@ -37,20 +37,32 @@ menu:	beq $v0 $0 end
 	add $a0 $0 $v0 # numero cenario a ser carregado
 	jal loadscreen
 	
-# teste de atraso do desenho
+# teste de animacao de portaand
 
-	addi $s6 $0 100000 # taxa de atraso
-	jal timer
+	addi $t9 $0 42 # x
+	addi $t7 $0 27 # y
+	addi $t8 $0 52 # fim x
+	add $t6 $0 $t9 # variacao de x
+animacao1:
+	beq $t6 $t8 fimanimacao1
 	
-	addi $v1 $0 0x10010000 # endereco da escrita
-	addi $t8 $0 1 # proporcao
-	addi $t5 $0 10 # x
-	addi $t6 $0 30 # y
-	addi $v1 $v1 0 # inicio
-	addi $s5 $0 0xeeeeee # cor
+	jal portaand
 	
-	jal numzero
+	addi $t6 $t6 1 
 	
+fimanimacao1:
+	j menu
+	
+animacao2:
+	beq $t6 $t9 fimanimacao2
+	
+	jal portaand
+	
+	addi $t6 $t6 -1
+	
+fimanimacao2:
+	j animacao1
+	 
 	j menu
 
 # funcao para carregar cenario na tela
@@ -63,6 +75,8 @@ loadscreen:
 	mul $a1 $s3 $s4 # tamanho da tela
 	mul $a0 $a0 $a1 # offset de memoria ate o cenario
 	addi $a0 $a0 0x10010000 # endereco inicial do cenario
+	# x inicial
+	# y inicial
 	lui $a2 0x1001 # inicio da escrita
 	
 loadpix:
@@ -89,6 +103,52 @@ storescreen:
 	mul $a0 $a0 $a1 # offset de memoria ate o cenario
 	addi $v1 $a0 0x10010000 # endereco da escrita
 	
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+	
+# funcao para carregar um retangulo de cenario na memoria
+	
+loadret:
+	sw $ra 0($sp)
+	addi $sp $sp -4
+	
+	sll $t0 $t0 2 # x inicial a ser carregado
+	sll $t1 $t1 9 # y inicial a ser carregado
+	sll $a0 $a0 2 # ajuste de byte para origem do carregamento 
+	mul $a1 $s3 $s4 # tamanho da tela
+	mul $a0 $a0 $a1 # offset de memoria ate o cenario
+	addi $a0 $a0 0x10010000 # endereco inicial do cenario
+	add $a0 $a0 $t0 # deslocamento x na tela de carregamento
+	add $a0 $a0 $t1 # deslocamento y na tela de carregamento
+	add $a2 $0 0x10010000 # inicio da escrita
+	add $a2 $a2 $t0 # deslocamento x na tela de escrita
+	add $a2 $a2 $t1 # deslocamento y na tela de escrita
+	add $a1 $0 $t2 # contador de x
+	sll $t4 $t2 2 # espaco de memoria a deslocar em x
+	addi $t5 $0 1 
+	sll $t5 $t5 9 # espaco de memoria a deslocar em y
+
+	
+loadpixret1:
+	beq $t3 $0 fimloadpixret1
+loadpixret2:
+	beq $a1 $0 fimloadpixret2
+	lw $a3 0($a0) # copia cenario
+	sw $a3 0($a2) # escreve cenario
+	addi $a0 $a0 4 # prx pixel a ser copiado
+	addi $a2 $a2 4 # prx pixel a ser escrito
+	addi $a1 $a1 -1 # x--
+	j loadpixret2
+fimloadpixret2:
+	add $a0 $a0 $t5 # proxima linha a ser carregada
+	add $a2 $a2 $t5 # proxima linha a ser escrita
+	sub $a0 $a0 $t4 # linha a ser carregada - x
+	sub $a2 $a2 $t4 # linha a ser escrita - x
+	addi $t3 $t3 -1 # y--
+	add $a1 $0 $t2 # contador = x
+	j loadpixret1
+fimloadpixret1:
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
@@ -531,40 +591,6 @@ n8:	addi $t8 $0 1 # proporcao
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
-	
-# funcao para carregar uma area retangular da memoria
-loadretmemo:	
-	sll $t0 $t0 2 
-	add $t0 $t0 $a0 # inicio + x
-	sll $t1 $t1 9
-	add $t0 $t0 $t1 # inicio + y
-	add $a0 $0 $t0 # endereco
-	add $t0 $0 $a0 
-	add $t1 $0 $a1 # cor
-	add $t2 $0 $a2 # b
-	add $t3 $0 $a3 # h
-
-laco1loadretmemo:	
-	beq $t3 $0 fimloadretmemo
-laco2loadretmemo:	
-	beq $t2 $0 fimlaco2loadretmemo
-	
-	sw $t1 0($t0) # 'pinta' pixel
-	addi $t0 $t0 4 # proximo endereco de memoria
-
-	addi $t2 $t2 -1 # x--
-	j laco2loadretmemo
-
-fimlaco2loadretmemo:
-	add $t0 $t0 $s0 # proxima linha 
-	sll $t7 $a2 2 # x * 4 (endereco de mem)
-	sub $t0 $t0 $t7 # volta para inicio
-	add $t2 $0 $a2 # x = b
-	addi $t3 $t3 -1 # y--
-	j laco1loadretmemo
-
-fimloadretmemo:	 
-	jr $ra # retorno da funcao
 
 # funcao desenha chao
 chao:	
@@ -1126,6 +1152,24 @@ portaand:
 	sw $ra 0($sp)
 	addi $sp $sp -4
 
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xdddddd # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 5 # b
+	addi $a3 $0 5 # h
+	add $t0 $0 $t6 # x
+	add $t1 $0 $t7 # y
+	jal ret
+	
+	addi $s6 $0 100000 # taxa de atraso
+	jal timer
+	
+	addi $a0 $0 1 # numero cenario a ser carregado o retangulo
+	add $t0 $0 $t6 # x
+	add $t1 $0 $t7 # y
+	addi $t2 $0 5 # b
+	addi $t3 $0 5 # h
+	jal loadret
 
 	addi $sp $sp 4
 	lw $ra 0($sp)
