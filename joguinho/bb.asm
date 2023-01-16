@@ -37,28 +37,73 @@ menu:	beq $v0 $0 end
 	add $a0 $0 $v0 # numero cenario a ser carregado
 	jal loadscreen
 	
-# teste de animacao de portaand
+# animacao de portaand na tela
 
 	addi $t9 $0 42 # x
-	addi $t7 $0 27 # y
-	addi $t8 $0 52 # fim x
+	addi $s5 $0 27 # y
+	addi $t8 $0 70 # fim x
 	add $t6 $0 $t9 # variacao de x
 animacao1:
 	beq $t6 $t8 fimanimacao1
 	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xdddddd # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 5 # b
+	addi $a3 $0 5 # h
+	add $t0 $0 $t6 # x
+	add $t1 $0 $s5 # y
 	jal portaand
 	
-	addi $t6 $t6 1 
+	addi $s6 $0 25000 # taxa de atraso
+	jal timer
+	
+	addi $a0 $0 1 # numero cenario a ser carregado o retangulo
+	add $t0 $0 $t6 # x
+	add $t1 $0 $s5 # y
+	addi $t2 $0 5 # b
+	addi $t3 $0 5 # h
+	jal loadret
+	
+	addi $t6 $t6 1 # x++
+	
+	andi $s6 $s5 1
+	beq $s6 $0 walk1
+	addi $s5 $s5 -1 # y--
+	j endwalk1
+walk1:	
+	addi $s5 $s5 1 # y++
+endwalk1:
+	j animacao1
 	
 fimanimacao1:
-	j menu
+	j animacao2
 	
 animacao2:
 	beq $t6 $t9 fimanimacao2
 	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xdddddd # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 5 # b
+	addi $a3 $0 5 # h
+	add $t0 $0 $t6 # x
+	add $t1 $0 $s5 # y
 	jal portaand
 	
-	addi $t6 $t6 -1
+	addi $s6 $0 25000 # taxa de atraso
+	jal timer
+	
+	addi $a0 $0 1 # numero cenario a ser carregado o retangulo
+	add $t0 $0 $t6 # x
+	add $t1 $0 $s5 # y
+	addi $t2 $0 5 # b
+	addi $t3 $0 5 # h
+	jal loadret
+	
+	addi $t6 $t6 -1 # x--
+
+	j animacao2
 	
 fimanimacao2:
 	j animacao1
@@ -1152,24 +1197,7 @@ portaand:
 	sw $ra 0($sp)
 	addi $sp $sp -4
 
-	addi $v1 $0 0x10010000 # endereco da escrita
-	add $a0 $0 $v1 # endereco
-	addi $a1 $0 0xdddddd # RGB 0x ff ff ff cor do ceu
-	addi $a2 $0 5 # b
-	addi $a3 $0 5 # h
-	add $t0 $0 $t6 # x
-	add $t1 $0 $t7 # y
 	jal ret
-	
-	addi $s6 $0 100000 # taxa de atraso
-	jal timer
-	
-	addi $a0 $0 1 # numero cenario a ser carregado o retangulo
-	add $t0 $0 $t6 # x
-	add $t1 $0 $t7 # y
-	addi $t2 $0 5 # b
-	addi $t3 $0 5 # h
-	jal loadret
 
 	addi $sp $sp 4
 	lw $ra 0($sp)
