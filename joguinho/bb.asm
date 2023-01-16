@@ -35,6 +35,7 @@ menu:	beq $v0 $0 end
 	beq $v0 $0 end # encerra programa ao digitar 0
 
 	add $a0 $0 $v0 # numero cenario a ser carregado
+	add $k0 $0 $a0 # cenário de fundo a ser carregado
 	jal loadscreen
 	
 # animacao de portaand na tela
@@ -43,6 +44,7 @@ menu:	beq $v0 $0 end
 	addi $s5 $0 27 # y
 	addi $t8 $0 70 # fim x
 	add $t6 $0 $t9 # variacao de x
+	add $k0 $0 $k0 # cenário de fundo a ser carregado
 animacao1:
 	beq $t6 $t8 fimanimacao1
 	
@@ -58,7 +60,7 @@ animacao1:
 	addi $s6 $0 25000 # taxa de atraso
 	jal timer
 	
-	addi $a0 $0 2 # numero cenario a ser carregado o retangulo
+	add $a0 $0 $k0 # numero cenario a ser carregado o retangulo
 	add $t0 $0 $t6 # x
 	add $t1 $0 $s5 # y
 	addi $t2 $0 5 # b
@@ -94,7 +96,7 @@ animacao2:
 	addi $s6 $0 25000 # taxa de atraso
 	jal timer
 	
-	addi $a0 $0 2 # numero cenario a ser carregado o retangulo
+	add $a0 $0 $k0 # numero cenario a ser carregado o retangulo
 	add $t0 $0 $t6 # x
 	add $t1 $0 $s5 # y
 	addi $t2 $0 5 # b
