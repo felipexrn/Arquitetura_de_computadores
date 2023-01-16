@@ -58,7 +58,7 @@ animacao1:
 	addi $s6 $0 25000 # taxa de atraso
 	jal timer
 	
-	addi $a0 $0 1 # numero cenario a ser carregado o retangulo
+	addi $a0 $0 2 # numero cenario a ser carregado o retangulo
 	add $t0 $0 $t6 # x
 	add $t1 $0 $s5 # y
 	addi $t2 $0 5 # b
@@ -94,7 +94,7 @@ animacao2:
 	addi $s6 $0 25000 # taxa de atraso
 	jal timer
 	
-	addi $a0 $0 1 # numero cenario a ser carregado o retangulo
+	addi $a0 $0 2 # numero cenario a ser carregado o retangulo
 	add $t0 $0 $t6 # x
 	add $t1 $0 $s5 # y
 	addi $t2 $0 5 # b
@@ -1191,7 +1191,7 @@ traco:
 	lw $ra 0($sp)
 	jr $ra
 	
-# funcoes para desenhar portas lógicas	
+# funcoes para desenhar portas lï¿½gicas	
 portaand:
 
 	sw $ra 0($sp)
