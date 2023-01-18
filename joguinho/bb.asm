@@ -1,32 +1,46 @@
 .text
 main: nop
 
-# propriedades graficas
-	addi $s0 $0 512 # width
-	addi $s1 $0 256 # height
-	addi $s2 $0 1 # proporcao
-	div $s0 $s2
-	mflo $s3 # h
-	div $s1 $s2
-	mflo $s4 # w
-	#sll $s3 $s3 2 # w
-	#sll $s4 $s4 2 # h
+# IFRN - Curso de TADS - Disciplina de Arquitetura de Computadores
+# Projeto de jogo entitulado Braulio Bros
+# Autor Felipe Xavier
+# ------------------------------------
 
-# cenarios
+# Funcionamento:
+# Monte e execute o programa com os atalhos f3 e f5.
+# Digite no console o número 1 para carregar o primeiro cenario
+# ou
+# Digite 2 ou 3 para carregar outras telas
+# -------------------------------------
+
+# propriedades graficas do bitmap display
+# Esta parte do projeto carece de revisao futura
+# pois apresenta mau funcionamento
+	addi $s0 $0 512 # width (largura do bitmap display) em pixels
+	addi $s1 $0 256 # height (altura do bitmap display) em pixels
+	addi $s2 $0 1 # proporcao de pixels
+	div $s0 $s2 # correcao pela proporcao
+	mflo $s3 # width corrigido pela proporcao
+	div $s1 $s2 # correcao pela proporcao
+	mflo $s4 # height corrigido pela proporcao
+
+
+# Estes sao os cenarios a serem carregados na memoria do mars mips
+# ate o presente momento sao carregados 2 cenarios e 1 area com numeros 
 	
-	addi $a0 $0 1 # local a ser guardado o cenario
-	jal storescreen
-	jal cenario1
+	addi $a0 $0 1 # local a ser guardado o cenario (uma tela de distancia do endeco 0x1001000) 
+	jal storescreen # chamada de funcao que ajusta endereco do cenario
+	jal cenario1 # chamada de funcoa que desenha cenario 1
 	
-	addi $a0 $0 2 # local a ser guardado o cenario
-	jal storescreen
-	jal cenario2
+	addi $a0 $0 2 # local a ser guardado o cenario (duas telas de distancia do endeco 0x1001000)
+	jal storescreen # chamada de funcao que ajusta endereco do cenario
+	jal cenario2 # chamada de funcoa que desenha cenario 2
 	
-	addi $a0 $0 3 # local a ser guardado o cenario
-	jal storescreen
-	jal cenario3
+	addi $a0 $0 3 # local a ser guardado o cenario (tres telas de distancia do endeco 0x1001000)
+	jal storescreen # chamada de funcao que ajusta endereco do cenario
+	jal cenario3 # chamada de funcoa que desenha cenario 3
 	
-	addi $v0 $0 1
+	addi $v0 $0 1 # 
 menu:	beq $v0 $0 end
 	
 	add $v0 $0 5 # escolha o cenario
@@ -35,7 +49,7 @@ menu:	beq $v0 $0 end
 	beq $v0 $0 end # encerra programa ao digitar 0
 
 	add $a0 $0 $v0 # numero cenario a ser carregado
-	add $k0 $0 $a0 # cenário de fundo a ser carregado
+	add $k0 $0 $a0 # cenï¿½rio de fundo a ser carregado
 	jal loadscreen
 	
 # animacao de portaand na tela
@@ -44,13 +58,13 @@ menu:	beq $v0 $0 end
 	addi $s5 $0 27 # y
 	addi $t8 $0 70 # fim x
 	add $t6 $0 $t9 # variacao de x
-	add $k0 $0 $k0 # cenário de fundo a ser carregado
+	add $k0 $0 $k0 # cenï¿½rio de fundo a ser carregado
 animacao1:
 	beq $t6 $t8 fimanimacao1
 	
 	addi $v1 $0 0x10010000 # endereco da escrita
 	add $a0 $0 $v1 # endereco
-	addi $a1 $0 0xdddddd # RGB 0x ff ff ff cor do ceu
+	addi $a1 $0 0xdd00dd # RGB 0x ff ff ff cor do ceu
 	addi $a2 $0 5 # b
 	addi $a3 $0 5 # h
 	add $t0 $0 $t6 # x
@@ -86,14 +100,14 @@ animacao2:
 	
 	addi $v1 $0 0x10010000 # endereco da escrita
 	add $a0 $0 $v1 # endereco
-	addi $a1 $0 0xdddddd # RGB 0x ff ff ff cor do ceu
+	addi $a1 $0 0xdd00dd # RGB 0x ff ff ff cor do ceu
 	addi $a2 $0 5 # b
 	addi $a3 $0 5 # h
 	add $t0 $0 $t6 # x
 	add $t1 $0 $s5 # y
 	jal portaand
 	
-	addi $s6 $0 25000 # taxa de atraso
+	addi $s6 $0 10000 # taxa de atraso
 	jal timer
 	
 	add $a0 $0 $k0 # numero cenario a ser carregado o retangulo
@@ -1199,6 +1213,66 @@ portaand:
 	sw $ra 0($sp)
 	addi $sp $sp -4
 
+	jal ret
+	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xaa00aa # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 1 # b
+	addi $a3 $0 1 # h
+	add $t0 $0 $t6 # x
+	addi $t0 $t0 1
+	add $t1 $0 $s5 # y
+	addi $t1 $t1 1
+	
+	jal ret
+	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xaa00aa # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 1 # b
+	addi $a3 $0 1 # h
+	add $t0 $0 $t6 # x
+	addi $t0 $t0 3
+	add $t1 $0 $s5 # y
+	addi $t1 $t1 1
+	
+	jal ret
+	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xaa00aa # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 1 # b
+	addi $a3 $0 1 # h
+	add $t0 $0 $t6 # x
+	addi $t0 $t0 1
+	add $t1 $0 $s5 # y
+	addi $t1 $t1 3
+	
+	jal ret
+	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xaa00aa # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 1 # b
+	addi $a3 $0 1 # h
+	add $t0 $0 $t6 # x
+	addi $t0 $t0 2
+	add $t1 $0 $s5 # y
+	addi $t1 $t1 3
+	
+	jal ret
+	
+	addi $v1 $0 0x10010000 # endereco da escrita
+	add $a0 $0 $v1 # endereco
+	addi $a1 $0 0xaa00aa # RGB 0x ff ff ff cor do ceu
+	addi $a2 $0 1 # b
+	addi $a3 $0 1 # h
+	add $t0 $0 $t6 # x
+	addi $t0 $t0 3
+	add $t1 $0 $s5 # y
+	addi $t1 $t1 3
+	
 	jal ret
 
 	addi $sp $sp 4
