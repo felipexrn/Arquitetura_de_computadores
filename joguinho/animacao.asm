@@ -249,6 +249,8 @@ main:
 	
 	addi $26 $0 8192 # tamanho da tela
 	addi $27 $0 1142 # tamanho dos assets + vetor dso paramentros
+	addi $6 $0 512 # width
+	addi $7 $0 4 # porporcao width
 	
 	# chamada de funcao para
 	# guardar cenario e
@@ -280,7 +282,7 @@ main:
 	add $2 $2 $1
 	
 	lui $3 0x1001
-	addi $1 $0 70008 # personagem[1]
+	addi $1 $0 70072#70008 # personagem[1]
 	add $3 $3 $1
 	
 	lui $4 0x1001
@@ -290,22 +292,14 @@ main:
 	lui $5 0x1001
 	addi $1 $0 70072 # personagem[3]
 	add $5 $5 $1
-	
-	lw $22 0($2) # base  
-	lw $23 4($2) # altura 
-	lw $18 8($2) # x inicial
-	lw $19 12($2) # y inicial
-	lw $20 16($2) # x final
-	lw $21 20($2) # y final
-	lw $28 24($2) # direita
-	lw $29 28($2) # esquerda
+
 	
 # laco de repeticao para personagem na tela
 animacao:
-	beq  $18, $20, fimanimacao # comparacao de posicao
+	bne  $0, $0, fimanimacao # comparacao de posicao
 	
-        # carregamento de parametros de personagem
-	
+# carregamento de parametros de personagem
+
 	lw $22 0($2) # base  
 	lw $23 4($2) # altura 
 	lw $18 8($2) # x inicial
@@ -325,33 +319,7 @@ animacao:
 	add $12, $0, $19 # y
 	jal personagem
 	
-	addi $8, $0, 25000 # taxa de tempo de espera
-	jal timer
-		
-	add $9, $0, $22 # base (colunas do desenho)
-	add $10, $0, $23 # altura (linhas do desenho)
-	add $11, $0, $18 # x do canto superior esquerdo
-	add $12, $0, $19 # y do canto superior esquerdo
-	jal carregafundo
-	
-	addi $18, $18, 1 # variacao do movimento
-	
-	sw $22 0($2) # base  
-	sw $23 4($2) # altura 
-	sw $18 8($2) # x inicial
-	sw $19 12($2) # y inicial
-	sw $20 16($2) # x final
-	sw $21 20($2) # y final
-	sw $28 24($2) # direita
-	sw $29 28($2) # esquerda
-	
-	addi $18, $18, -1 # variacao do movimento
-	
-	
-	# --------------------------------
-	
-	
-	# carregamento de parametros de personagem
+# carregamento de parametros de personagem
 	
 	lw $22 0($3) # base  
 	lw $23 4($3) # altura 
@@ -372,15 +340,54 @@ animacao:
 	add $12, $0, $19 # y
 	jal personagem
 	
+# tempo da animacao
 	addi $8, $0, 25000 # taxa de tempo de espera
 	jal timer
-		
+pers1:	
+	lw $22 0($2) # base  
+	lw $23 4($2) # altura 
+	lw $18 8($2) # x inicial
+	lw $19 12($2) # y inicial
+	lw $20 16($2) # x final
+	lw $21 20($2) # y final
+	lw $28 24($2) # direita
+	lw $29 28($2) # esquerda
+	
 	add $9, $0, $22 # base (colunas do desenho)
 	add $10, $0, $23 # altura (linhas do desenho)
 	add $11, $0, $18 # x do canto superior esquerdo
 	add $12, $0, $19 # y do canto superior esquerdo
 	jal carregafundo
 	
+	bge $18, $20 pers2
+	addi $18, $18, 2 # variacao do movimento
+	
+	sw $22 0($2) # base  
+	sw $23 4($2) # altura 
+	sw $18 8($2) # x inicial
+	sw $19 12($2) # y inicial
+	sw $20 16($2) # x final
+	sw $21 20($2) # y final
+	sw $28 24($2) # direita
+	sw $29 28($2) # esquerda
+	
+pers2:
+	lw $22 0($3) # base  
+	lw $23 4($3) # altura 
+	lw $18 8($3) # x inicial
+	lw $19 12($3) # y inicial
+	lw $20 16($3) # x final
+	lw $21 20($3) # y final
+	lw $28 24($3) # direita
+	lw $29 28($3) # esquerda
+	
+	add $9, $0, $22 # base (colunas do desenho)
+	add $10, $0, $23 # altura (linhas do desenho)
+	add $11, $0, $18 # x do canto superior esquerdo
+	add $12, $0, $19 # y do canto superior esquerdo
+	jal carregafundo
+	
+	bge $18, $20 pers3
 	addi $18, $18, 1 # variacao do movimento
 	
 	sw $22 0($3) # base  
@@ -392,21 +399,11 @@ animacao:
 	sw $28 24($3) # direita
 	sw $29 28($3) # esquerda
 
-	#--------------------------------
-	
+pers3:	
 	j animacao
 
 fimanimacao:
 
-	# chamada de funcao para
-	# carregar personagem na tela 
-	addi $8 $0 0x10010000
-	add $8 $8 $28 # endereco do inicio do personagem na memoria
-	add $9, $0, $22 # base (colunas do desenho)
-	add $10, $0, $23 # altura (linhas do desenho)
-	add $11, $0, $18 # x
-	add $12, $0, $19 # y
-	jal personagem
 	
 end:
 	addi $2, $0, 10 # encerra o programa
@@ -423,7 +420,7 @@ load:
 	addi $8, $8, 4
 	addi $24, $24, 4
 	addi $10, $10, 1
-	bne $10, 8192, load
+	bne $10, $26, load
 	jr $31
 	
 # funcao para guardar cenario e personagem na memoria	
@@ -450,7 +447,10 @@ store:
 personagem:  
 	lui $15, 0x1001
 	sll $11, $11, 2
-	sll $12, $12, 9 
+	div $6 $7 # width / proporcao
+	mflo $1
+	sll $1 $1 2 # quantidade de memoria em width
+	mul $12, $12, $1 
 	add $15, $15, $11
 	add $15, $15, $12 # posicao inicial a ser desenhada
 	add $13, $0, $9 # largura 
@@ -462,8 +462,14 @@ laco2:	beq $9, $0, fimlaco2
 	addi $15, $15, 4
 	addi $9, $9, -1 # largura --
 	j laco2
-fimlaco2:    
-	addi $15, $15, 512
+fimlaco2:   
+	# addi $1 $0 width tela
+	# div $1 proporcao width
+	# sll $1 $1 2  
+	div $6 $7 # width / proporcao
+	mflo $1
+	sll $1 $1 2 # quantidade de memoria em width
+	add $15, $15, $1
 	sll $16, $13, 2 
 	sub $15, $15, $16
 	add $9, $0, $13 # largura valor inicial
@@ -481,7 +487,10 @@ fimlaco1:
 carregafundo:  
 	lui $15, 0x1001
 	sll $11, $11, 2
-	sll $12, $12, 9 
+	div $6 $7 # width / proporcao
+	mflo $1
+	sll $1 $1 2 # quantidade de memoria em width
+	mul $12, $12, $1 
 	add $15, $15, $11
 	add $15, $15, $12 # posicao inicial a ser desenhada
 	add $13, $0, $9 # largura        
@@ -503,8 +512,11 @@ laco2.1:
 	addi $9, $9, -1 # largura --
 	j laco2.1
 fimlaco2.1:    
-	addi $15, $15, 512
-	addi $8, $8, 512
+	div $6 $7 # width / proporcao
+	mflo $1
+	sll $1 $1 2 # quantidade de memoria em width
+	add $15, $15, $1
+	add $8, $8, $1
 	sll $16, $13, 2 
 	sub $8, $8, $16
 	sub $15, $15, $16
