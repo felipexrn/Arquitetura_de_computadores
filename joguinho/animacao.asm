@@ -304,9 +304,19 @@ main:
 animacao:
 	beq  $18, $20, fimanimacao # comparacao de posicao
 	
-        # chamada de funcao para
-	# carregar personagem na tela 
+        # carregamento de parametros de personagem
 	
+	lw $22 0($2) # base  
+	lw $23 4($2) # altura 
+	lw $18 8($2) # x inicial
+	lw $19 12($2) # y inicial
+	lw $20 16($2) # x final
+	lw $21 20($2) # y final
+	lw $28 24($2) # direita
+	lw $29 28($2) # esquerda
+	
+	# chamada de funcao para
+	# carregar personagem na tela 
 	addi $8 $0 0x10010000
 	add $8 $8 $28 # endereco do inicio do personagem na memoria
 	add $9, $0, $22 # base (colunas do desenho)
@@ -325,6 +335,65 @@ animacao:
 	jal carregafundo
 	
 	addi $18, $18, 1 # variacao do movimento
+	
+	sw $22 0($2) # base  
+	sw $23 4($2) # altura 
+	sw $18 8($2) # x inicial
+	sw $19 12($2) # y inicial
+	sw $20 16($2) # x final
+	sw $21 20($2) # y final
+	sw $28 24($2) # direita
+	sw $29 28($2) # esquerda
+	
+	addi $18, $18, -1 # variacao do movimento
+	
+	
+	# --------------------------------
+	
+	
+	# carregamento de parametros de personagem
+	
+	lw $22 0($3) # base  
+	lw $23 4($3) # altura 
+	lw $18 8($3) # x inicial
+	lw $19 12($3) # y inicial
+	lw $20 16($3) # x final
+	lw $21 20($3) # y final
+	lw $28 24($3) # direita
+	lw $29 28($3) # esquerda
+	
+	# chamada de funcao para
+	# carregar personagem na tela 
+	addi $8 $0 0x10010000
+	add $8 $8 $28 # endereco do inicio do personagem na memoria
+	add $9, $0, $22 # base (colunas do desenho)
+	add $10, $0, $23 # altura (linhas do desenho)
+	add $11, $0, $18 # x
+	add $12, $0, $19 # y
+	jal personagem
+	
+	addi $8, $0, 25000 # taxa de tempo de espera
+	jal timer
+		
+	add $9, $0, $22 # base (colunas do desenho)
+	add $10, $0, $23 # altura (linhas do desenho)
+	add $11, $0, $18 # x do canto superior esquerdo
+	add $12, $0, $19 # y do canto superior esquerdo
+	jal carregafundo
+	
+	addi $18, $18, 1 # variacao do movimento
+	
+	sw $22 0($3) # base  
+	sw $23 4($3) # altura 
+	sw $18 8($3) # x inicial
+	sw $19 12($3) # y inicial
+	sw $20 16($3) # x final
+	sw $21 20($3) # y final
+	sw $28 24($3) # direita
+	sw $29 28($3) # esquerda
+
+	#--------------------------------
+	
 	j animacao
 
 fimanimacao:
