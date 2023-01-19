@@ -1,5 +1,5 @@
 .data
-#cenario                                                                                                                                
+# cenario 0x10010000 > 8192 * 4                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9
@@ -64,109 +64,160 @@
 .word 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f
 .word 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f
 .word 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f
-#porta or                                                                                                                                
-.word 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x009900 0x009900 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+# porta or direita 11 x 7                                                                                                                                
+.word 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x00ff00 0x00ff00 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x00ff00 0x00ff00                                                                                                                     
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x009900 0x009900                                                                                                                     
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
 .word 0x009900 0x009900 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
 .word 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-#porta and                                                                                                                                
-.word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x009900 0x009900 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+# porta or esquerda  11 x 7                                                                                                                                
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x009900 0x009900                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x00ff00 0x00ff00 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x00ff00 0x00ff00                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9                                                                                                                     
+# porta and direita  11 x 7                                                                                                                                
+.word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x00ff00 0x00ff00 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x00ff00 0x00ff00                                                                                                                     
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x009900 0x009900                                                                                                                     
+.word 0x00ff00 0x00ff00 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+# porta and esquerda  11 x 7                                                                                                                                
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x009900 0x009900                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x009900 0x009900 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                                                                                                                     
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x009900 0x009900 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x009900 0x009900                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                                                                                                                     
+# porta not direita  11 x 7                                                                                                                                
+.word 0x88e3e9 0x88e3e9 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x00ff00 0x00ff00 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x009900 0x009900                                                                                                                     
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-#porta not                                                                                                                                
-.word 0x88e3e9 0x88e3e9 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x009900 0x009900 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x009900 0x009900                                                                                                                     
-.word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-.word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
 .word 0x88e3e9 0x88e3e9 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                     
-#personagem parado direita                                                                                                                                
+# porta not esquerda  11 x 7                                                                                                                                
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x00ff00 0x00ff00 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x009900 0x009900                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                                                                                                                     
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0x88e3e9 0x88e3e9                                                                                                                     
+# personagem parado direita  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x000000 0xffd069 0xffd069 0x000000 0xffd069 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x009900 0x009900 0xffd069 0x009900 0x009900 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x000000 0xc09e79 0xe4bc90 0x000000 0xe4bc90 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x009900 0x009900 0xc09e79 0x009900 0x009900 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x009900 0x009900 0x009900 0x009900 0x009900 0x009900 0x009900 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0xffd069 0x009900 0x009900 0x009900 0xffd069 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0xffd069 0x003eac 0x003eac 0x003eac 0xffd069 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0xe4bc90 0x007700 0x009900 0x009900 0xe4bc90 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0xc09e79 0x003eac 0x003eac 0x003eac 0xe4bc90 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xc09e79 0x003eac 0x003eac 0x002c79 0x003eac 0x003eac 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x88e3e9                                                                                                                       
-#personagem andando direita                                                                                                                                
+# personagem andando direita  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x000000 0xffd069 0xffd069 0x000000 0xffd069 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x009900 0x009900 0x009900 0xffd069 0x009900 0x009900 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0xffd069 0x009900 0x009900 0x009900 0x009900 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0xffd069 0x009900 0x009900 0x009900 0x009900 0xffd069 0xffd069                                                                                                                       
-.word 0x88e3e9 0xffd069 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x000000 0xc09e79 0xe4bc90 0x000000 0xe4bc90 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x009900 0x009900 0x009900 0xc09e79 0x009900 0x009900 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0xc09e79 0x007700 0x009900 0x009900 0x009900 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0xc09e79 0x007700 0x007700 0x009900 0x009900 0xc09e79 0xe4bc90                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x88e3e9 0x000000 0x000000 0x000000 0x88e3e9                                                                                                                       
-#personagem correndo direita                                                                                                                                
+# personagem correndo direita  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x000000 0xffd069 0xffd069 0x000000 0xffd069 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0xffd069                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x009900 0x009900 0xffd069 0x009900 0x009900 0xffd069 0xffd069                                                                                                                       
-.word 0x88e3e9 0xffd069 0xffd069 0x009900 0x009900 0x009900 0x009900 0xffd069 0xffd069                                                                                                                       
-.word 0xffd069 0xffd069 0xffd069 0x009900 0x009900 0x009900 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0xffd069 0x88e3e9 0x88e3e9 0x009900 0x009900 0x009900 0x88e3e9 0x88e3e9 0x000000                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x000000 0xc09e79 0xe4bc90 0x000000 0xe4bc90 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0xe4bc90                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x009900 0x009900 0xc09e79 0x009900 0x009900 0xe4bc90 0xe4bc90                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0xe4bc90 0x009900 0x009900 0x009900 0x007700 0xc09e79 0xc09e79                                                                                                                       
+.word 0xe4bc90 0xc09e79 0xc09e79 0x009900 0x009900 0x009900 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0xe4bc90 0x88e3e9 0x88e3e9 0x009900 0x009900 0x009900 0x88e3e9 0x88e3e9 0x000000                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x000000                                                                                                                       
-.word 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9                                                                                                                       
-.word 0x000000 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x002c79 0x002c79 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9                                                                                                                       
+.word 0x000000 0x002c79 0x002c79 0x002c79 0x002c79 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x000000 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-#personagem parado esqueda                                                                                                                                
+# personagem parado esqueda  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0xffd069 0x000000 0xffd069 0xffd069 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x009900 0x009900 0xffd069 0x009900 0x009900 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0xe4bc90 0x000000 0xe4bc90 0xc09e79 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x009900 0x009900 0xc09e79 0x009900 0x009900 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x009900 0x009900 0x009900 0x009900 0x009900 0x009900 0x009900 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0xffd069 0x009900 0x009900 0x009900 0xffd069 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0xffd069 0x003eac 0x003eac 0x003eac 0xffd069 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0xe4bc90 0x009900 0x009900 0x007700 0xe4bc90 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0xe4bc90 0x003eac 0x003eac 0x003eac 0xc09e79 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0x003eac 0x003eac 0x002c79 0x003eac 0x003eac 0xc09e79 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x88e3e9                                                                                                                       
-#personagem andando esqueda                                                                                                                                
+# personagem andando esqueda  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0xffd069 0x000000 0xffd069 0xffd069 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0x009900 0x009900 0xffd069 0x009900 0x009900 0x009900 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0xffd069 0x009900 0x009900 0x009900 0x009900 0xffd069 0xffd069 0x88e3e9                                                                                                                       
-.word 0xffd069 0xffd069 0x009900 0x009900 0x009900 0x009900 0xffd069 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0xe4bc90 0x000000 0xe4bc90 0xc09e79 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0x009900 0x009900 0xc09e79 0x009900 0x009900 0x009900 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0xe4bc90 0x009900 0x009900 0x009900 0x007700 0xc09e79 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0xe4bc90 0xc09e79 0x009900 0x009900 0x007700 0x007700 0xc09e79 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x000000 0x000000 0x000000 0x88e3e9 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-#personagem correndo esqueda                                                                                                                                
+# personagem correndo esqueda  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0xffd069 0x000000 0xffd069 0xffd069 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0xffd069 0x88e3e9 0x88e3e9 0xffd069 0xffd069 0xffd069 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0xffd069 0xffd069 0x009900 0x009900 0xffd069 0x009900 0x009900 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0xffd069 0xffd069 0x009900 0x009900 0x009900 0x009900 0xffd069 0xffd069 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0x009900 0x009900 0x009900 0xffd069 0xffd069 0xffd069                                                                                                                       
-.word 0x000000 0x88e3e9 0x88e3e9 0x009900 0x009900 0x009900 0x88e3e9 0x88e3e9 0xffd069                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0xe4bc90 0x000000 0xe4bc90 0xc09e79 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0xe4bc90 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0xe4bc90 0xe4bc90 0x009900 0x009900 0xc09e79 0x009900 0x009900 0x88e3e9 0x88e3e9                                                                                                                       
+.word 0xc09e79 0xc09e79 0x007700 0x009900 0x009900 0x009900 0xe4bc90 0xe4bc90 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x009900 0x009900 0x009900 0xc09e79 0xc09e79 0xe4bc90                                                                                                                       
+.word 0x000000 0x88e3e9 0x88e3e9 0x009900 0x009900 0x009900 0x88e3e9 0x88e3e9 0xe4bc90                                                                                                                       
 .word 0x000000 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x000000                                                                                                                       
-.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x000000                                                                                                                       
+.word 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x002c79 0x002c79 0x88e3e9                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x002c79 0x002c79 0x002c79 0x002c79 0x000000                                                                                                                       
+.word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 
+
+# offset fim do cenario 65536
+
+# vetor com paramentros dos personagens 0x10010000 + 69976
+# b, h, x inicial, y inicial, x final, y, final, offset endereco direita, offset endereco esquerda
+.word 11 7 15 20 50 20 65540 65848 # porta or
+.word 11 7 25 35 60 35 66156 66464 # porta and
+.word 11 7 35 50 70 50 66772 67080 # porta not
+.word 9 12 64 50 100 50 67388 68252 # protagonista
+                                                                                                                
 .text
+
+# assets:
+	# identificador, b x h, offset a partir do final cenario
+	# porta or direita, 11 x 7, 4
+	# porta or esquerda, 11 x 7, 312
+	# porta and direita, 11 x 7, 620
+	# porta and esquerda, 11 x 7, 928
+	# porta not direita, 11 x 7, 1236
+	# porta not esquerda, 11 x 7, 1544
+	# protagonista parado direita, 9 x 12, 1852 
+	# protagonista andando direita, 9 x 12, 2284
+	# protagonista correndo direita, 9 x 12, 2716     
+	# protagonista parado esquerda, 9 x 12, 3148
+	# protagonista andando esquerda, 9 x 12, 3580     
+	# protagonista correndo esquerda, 9 x 12, 4012
+	# vetor com parametros, 8 x 4, 4444
+
 
 # orientacoes:
 # este programa funciona para as seguintes configuracoes graficas:
@@ -180,13 +231,17 @@
 # altere os parametros de base e altura do personagem
 # altere os paramentros de x e y iniciais e finais
 # altere como o movimento acontecer· na tela modificando o laco da animacao
+# adicione os pares ordenados e tamamanhos de cada personagem no vetor
 
 main: 	
-	# parametros globais
-	addi $22, $0, 8 # base do personagem
-	addi $23, $0, 5 # altura do personagem
+
+# parametros globais
+	
+	addi $22, $0, 9 # base do personagem
+	addi $23, $0, 12 # altura do personagem
 	mul $26 $22 $23 # area do personagem (base * altura)
-	addi $26 $26 8192 # tamanho da tela
+	addi $26 $0 8192 # tamanho da tela
+	addi $27 $0 1142 # assets
 	addi $18, $0, 15 # x inicial
 	addi $19, $0, 20 # y inicial
 	addi $20, $0, 50 # x final. evite ultrapassar 127
@@ -195,14 +250,16 @@ main:
 	# chamada de funcao para
 	# guardar cenario e
 	# personagem na memoria
-	add $t2, $0, $26 # contador da iteracao
+	add $t2, $27, $26 # contador da iteracao
 	add $t0 $0 $t2
 	sll $t0 $t0 2
 	addi $t0 $t0 0x10010000
 	addi $t0 $t0 -4 # local a ser lido
 	add $t8 $0 $t2
 	sll $t8 $t8 2
-	add $t8 $t8 $t0 # local a ser armazenado
+	add $t8 $t8 $t0 
+	sll $1 $27 2
+	sub $t8 $t8 $1 # local a ser armazenado
 	jal store
 	
 	# chamada de funcao para
@@ -220,6 +277,12 @@ main:
 	add $21, $0, $21 # y final. n√£o colocar acima de 61!!!
 	add $22, $0, $22 # base
 	add $23, $0, $23 # altura
+	
+	lui $2 0x1001
+	lw $1 69976($2)
+	add $4 $0 $1
+	addi $2 $0 34
+	syscall
 	
 # laco de repeticao para personagem na tela
 animacao:
