@@ -24,7 +24,7 @@
 	# [4] x final,
 	# [5] y final,
 	# [6] offset do inicio de personagem,
-	# [7] offset do inicio de personagem invertido (opcional)
+	# [7] variavel extra (opcional)
 	
 	# Cole os vetores entre .data e .text
 	
@@ -275,16 +275,16 @@
 # VETORES COM PARAMETROS DOS PERSONAGENS
 
 # Ordem dos parametros do vetor:
-# base, altura, x inicial, y inicial, x final, y, final, offset inicio, offset invertido
+# base, altura, x inicial, y inicial, x final, y, final, offset inicio, variavel
 
 # vetor 1: endereco 0x10010000 + 69976
-.word 11 7 15 20 100 20 65536 65844 
+.word 11 7 15 20 100 20 65536 0 
 # vetor 2: endereco 0x10010000 + 70008
-.word 11 7 25 35 60 35 66152 66460 
+.word 11 7 25 35 100 35 66152 25 
 # vetor 3: endereco 0x10010000 + 70040
-.word 11 7 35 50 70 50 66768 67076 
+.word 11 7 35 50 70 50 66768 0 
 # vetor 4: endereco 0x10010000 + 70072
-.word 9 12 64 46 100 50 67384 68680 
+.word 9 12 64 46 100 50 67384 0 # 67384 67816 68248 68680 69112 69544 
 
 # ------------------------------------------------------------
 
@@ -356,8 +356,8 @@ animacao:
 	lw $19 12($2) # y inicial
 	lw $20 16($2) # x final
 	lw $21 20($2) # y final
-	lw $28 24($2) # direita
-	lw $29 28($2) # esquerda
+	lw $28 24($2) # inicio 
+	lw $29 28($2) # extra
 	
 # chamada de funcao para carregar personagem na tela 
 	addi $8 $0 0x10010000
@@ -375,8 +375,8 @@ animacao:
 	lw $19 12($3) # y inicial
 	lw $20 16($3) # x final
 	lw $21 20($3) # y final
-	lw $28 24($3) # direita
-	lw $29 28($3) # esquerda
+	lw $28 24($3) # inicio
+	lw $29 28($3) # extra
 	
 # chamada de funcao para carregar personagem na tela 
 	addi $8 $0 0x10010000
@@ -388,7 +388,7 @@ animacao:
 	jal personagem
 	
 # tempo de espera da animacao
-	addi $8, $0, 25000 # taxa de tempo de espera
+	addi $8, $0, 5000 # taxa de tempo de espera
 	jal timer
 	
 # apagar persoangens da tela
@@ -401,8 +401,8 @@ pers1:
 	lw $19 12($2) # y inicial
 	lw $20 16($2) # x final
 	lw $21 20($2) # y final
-	lw $28 24($2) # direita
-	lw $29 28($2) # esquerda
+	lw $28 24($2) # inicio
+	lw $29 28($2) # extra
 
 # chamada de funcao para apagar personagem
 	add $9, $0, $22 # base (colunas do desenho)
@@ -432,16 +432,48 @@ controle:
 	
 # caso queira alterar a velocidade do movimento aumente os valores
 dir:  		
-	addi $18, $18, 1 # incrementa endereco pra direita
+	addi $18, $18, 3 # incrementa endereco pra direita
+	lw $28 24($2) # inicio 
+	beq $28 67384 andadir # +0
+	beq $28 67816 corredir # +432
+	addi $28 $0 67384 # -864
+	j fimdir
+andadir:
+	addi $28 $0 67816 # +432
+	j fimdir 
+corredir:
+	addi $28 $0 68248 # +432
+	j fimdir 
+fimdir:	
+	sw $28 24($2) # inicio
 	j naodig
-esq: 	
-	addi $18, $18, -1 # incrementa endereco pra esquerda
+esq: 	#68680 69112 69544
+	addi $18, $18, -3 # incrementa endereco pra esquerda
+	lw $28 24($2) # inicio 
+	beq $28 68680 andaesq # +0
+	beq $28 69112 correesq # +432
+	addi $28 $0 68680 # -864
+	j fimesq
+andaesq:
+	addi $28 $0 69112 # +432
+	j fimesq 
+correesq:
+	addi $28 $0 69544 # +864
+	j fimesq 
+fimesq:	
+	sw $28 24($2) # inicio
 	j naodig
 baixo: 	
-	addi $19, $19, 1 # incrementa endereco pra baixo  
+	addi $19, $19, 3 # incrementa endereco pra baixo 
+	lw $28 24($2) # inicio 
+	addi $28 $0 67816
+	sw $28 24($2) # inicio
 	j naodig
 cima:	
-	addi $19, $19, -1 # incrementa endereco pra cima   
+	addi $19, $19, -3 # incrementa endereco pra cima
+	lw $28 24($2) # inicio 
+	addi $28 $0 68248
+	sw $28 24($2) # inicio   
 naodig:
 	# aqui pode-se fazer algo quando não há entrada de teclas
 	
@@ -454,8 +486,8 @@ naodig:
 	sw $19 12($2) # y inicial
 	sw $20 16($2) # x final
 	sw $21 20($2) # y final
-	sw $28 24($2) # direita
-	sw $29 28($2) # esquerda
+	sw $28 24($2) # inicio
+	sw $29 28($2) # extra
 	
 pers2:
 
@@ -466,8 +498,8 @@ pers2:
 	lw $19 12($3) # y inicial
 	lw $20 16($3) # x final
 	lw $21 20($3) # y final
-	lw $28 24($3) # direita
-	lw $29 28($3) # esquerda
+	lw $28 24($3) # inicio
+	lw $29 28($3) # extra
 	
 # chamada de funcao para apagar personagem
 	add $9, $0, $22 # base (colunas do desenho)
@@ -477,8 +509,20 @@ pers2:
 	jal carregafundo
 	
 # controle automatico de movimento de personagem
-	bge $18, $20 pers3 # continua para o proximo personagem
+ida:	beq $18, $20 troca # troca x inicial e final
+	bgt $18, $20 volta # loop da ida
+	addi $28 $0 66152 # direita
 	addi $18, $18, 1 # variacao do movimento
+	j fimpers2
+troca:
+	add $20 $0 $29 # x final = x inicial
+	add $29 $0 $18 # extra = x final
+	j fimpers2
+volta:	
+	blt $18 $20 ida # loop da volta
+	addi $28 $0 66460 # esquerda
+	addi $18, $18, -1 # variacao do movimento
+fimpers2:
 	
 # armazenamento de parametros do personagem 2: npc
 	sw $22 0($3) # base  
@@ -487,8 +531,8 @@ pers2:
 	sw $19 12($3) # y inicial
 	sw $20 16($3) # x final
 	sw $21 20($3) # y final
-	sw $28 24($3) # direita
-	sw $29 28($3) # esquerda
+	sw $28 24($3) # inicio
+	sw $29 28($3) # extra
 
 pers3:	
 	# aqui pode-se incrementar mais personagens no jogo
