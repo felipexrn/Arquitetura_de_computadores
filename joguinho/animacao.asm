@@ -278,13 +278,13 @@
 # base, altura, x inicial, y inicial, x final, y, final, offset inicio, variavel
 
 # vetor 1: endereco 0x10010000 + 69976
-.word 11 7 15 20 100 20 65536 0 
+.word 11 7 15 10 100 10 65536 15 
 # vetor 2: endereco 0x10010000 + 70008
-.word 11 7 25 35 100 35 66152 25 
+.word 11 7 25 35 40 35 66152 25 
 # vetor 3: endereco 0x10010000 + 70040
-.word 11 7 35 50 70 50 66768 0 
+.word 11 7 60 50 80 50 66768 60 
 # vetor 4: endereco 0x10010000 + 70072
-.word 9 12 64 46 100 50 67384 0 # 67384 67816 68248 68680 69112 69544 
+.word 9 12 15 46 100 50 67384 0 # 67384 67816 68248 68680 69112 69544 
 
 # ------------------------------------------------------------
 
@@ -387,6 +387,44 @@ animacao:
 	add $12, $0, $19 # y
 	jal personagem
 	
+# carregamento de parametros de personagem 3: npc
+	lw $22 0($4) # base  
+	lw $23 4($4) # altura 
+	lw $18 8($4) # x inicial
+	lw $19 12($4) # y inicial
+	lw $20 16($4) # x final
+	lw $21 20($4) # y final
+	lw $28 24($4) # inicio
+	lw $29 28($4) # extra
+	
+# chamada de funcao para carregar personagem na tela 
+	addi $8 $0 0x10010000
+	add $8 $8 $28 # endereco do inicio do personagem na memoria
+	add $9, $0, $22 # base (colunas do desenho)
+	add $10, $0, $23 # altura (linhas do desenho)
+	add $11, $0, $18 # x
+	add $12, $0, $19 # y
+	jal personagem
+	
+# carregamento de parametros de personagem 4: npc
+	lw $22 0($5) # base  
+	lw $23 4($5) # altura 
+	lw $18 8($5) # x inicial
+	lw $19 12($5) # y inicial
+	lw $20 16($5) # x final
+	lw $21 20($5) # y final
+	lw $28 24($5) # inicio
+	lw $29 28($5) # extra
+	
+# chamada de funcao para carregar personagem na tela 
+	addi $8 $0 0x10010000
+	add $8 $8 $28 # endereco do inicio do personagem na memoria
+	add $9, $0, $22 # base (colunas do desenho)
+	add $10, $0, $23 # altura (linhas do desenho)
+	add $11, $0, $18 # x
+	add $12, $0, $19 # y
+	jal personagem
+	
 # tempo de espera da animacao
 	addi $8, $0, 5000 # taxa de tempo de espera
 	jal timer
@@ -427,7 +465,9 @@ controle:
 	addi $12, $0, 'w'
 	beq $12, $13, cima # se for w 
 	addi $12, $0, ' '
-	beq $12, $13, end # se for ' '
+	beq $12, $13, pular # se for ' '
+	addi $12 $0 'p'
+	beq $12, $13, end # se for p
 	j naodig
 	
 # caso queira alterar a velocidade do movimento aumente os valores
@@ -473,11 +513,26 @@ cima:
 	addi $19, $19, -3 # incrementa endereco pra cima
 	lw $28 24($2) # inicio 
 	addi $28 $0 68248
-	sw $28 24($2) # inicio   
+	sw $28 24($2) # inicio  
+	j naodig
+pular: 
+	bgt $29 $0 naodig
+	addi $29 $0 24
+	
 naodig:
 	# aqui pode-se fazer algo quando não há entrada de teclas
+
+# personagem pula	
+pulo:	
+	ble $29 $0 fimpers1
+	addi $29 $29 -1
+	addi $19, $19, -1 # incrementa endereco pra cima
+	lw $28 24($2) # inicio 
+	addi $28 $0 68248
+	sw $28 24($2) # inicio
 	
-	# continua para o proximo personagem
+# continua para o proximo personagem
+fimpers1:
 	
 # armazenamento de parametros do personagem 1: protagonista
 	sw $22 0($2) # base  
@@ -509,17 +564,17 @@ pers2:
 	jal carregafundo
 	
 # controle automatico de movimento de personagem
-ida:	beq $18, $20 troca # troca x inicial e final
-	bgt $18, $20 volta # loop da ida
+ida2:	beq $18, $20 troca2 # troca x inicial e final
+	bgt $18, $20 volta2 # loop da ida
 	addi $28 $0 66152 # direita
 	addi $18, $18, 1 # variacao do movimento
 	j fimpers2
-troca:
+troca2:
 	add $20 $0 $29 # x final = x inicial
 	add $29 $0 $18 # extra = x final
 	j fimpers2
-volta:	
-	blt $18 $20 ida # loop da volta
+volta2:	
+	blt $18 $20 ida2 # loop da volta
 	addi $28 $0 66460 # esquerda
 	addi $18, $18, -1 # variacao do movimento
 fimpers2:
@@ -535,6 +590,95 @@ fimpers2:
 	sw $29 28($3) # extra
 
 pers3:	
+# carregamento de parametros de personagem 3: npc
+	lw $22 0($4) # base  
+	lw $23 4($4) # altura 
+	lw $18 8($4) # x inicial
+	lw $19 12($4) # y inicial
+	lw $20 16($4) # x final
+	lw $21 20($4) # y final
+	lw $28 24($4) # inicio
+	lw $29 28($4) # extra
+	
+# chamada de funcao para apagar personagem
+	add $9, $0, $22 # base (colunas do desenho)
+	add $10, $0, $23 # altura (linhas do desenho)
+	add $11, $0, $18 # x do canto superior esquerdo
+	add $12, $0, $19 # y do canto superior esquerdo
+	jal carregafundo
+	
+# controle automatico de movimento de personagem
+ida3:	beq $18, $20 troca3 # troca x inicial e final
+	bgt $18, $20 volta3 # loop da ida
+	addi $28 $0 66768 # direita
+	addi $18, $18, 1 # variacao do movimento
+	j fimpers3
+troca3:
+	add $20 $0 $29 # x final = x inicial
+	add $29 $0 $18 # extra = x final
+	j fimpers3
+volta3:	
+	blt $18 $20 ida3 # loop da volta
+	addi $28 $0 67076 # esquerda
+	addi $18, $18, -1 # variacao do movimento
+fimpers3:
+	
+# armazenamento de parametros do personagem 3: npc
+	sw $22 0($4) # base  
+	sw $23 4($4) # altura 
+	sw $18 8($4) # x inicial
+	sw $19 12($4) # y inicial
+	sw $20 16($4) # x final
+	sw $21 20($4) # y final
+	sw $28 24($4) # inicio
+	sw $29 28($4) # extra
+
+pers4:	
+# carregamento de parametros de personagem 4: npc
+	lw $22 0($5) # base  
+	lw $23 4($5) # altura 
+	lw $18 8($5) # x inicial
+	lw $19 12($5) # y inicial
+	lw $20 16($5) # x final
+	lw $21 20($5) # y final
+	lw $28 24($5) # inicio
+	lw $29 28($5) # extra
+	
+# chamada de funcao para apagar personagem
+	add $9, $0, $22 # base (colunas do desenho)
+	add $10, $0, $23 # altura (linhas do desenho)
+	add $11, $0, $18 # x do canto superior esquerdo
+	add $12, $0, $19 # y do canto superior esquerdo
+	jal carregafundo
+	
+# controle automatico de movimento de personagem
+ida4:	beq $18, $20 troca4 # troca x inicial e final
+	bgt $18, $20 volta4 # loop da ida
+	addi $28 $0 65536 # direita
+	addi $18, $18, 1 # variacao do movimento
+	j fimpers4
+troca4:
+	add $20 $0 $29 # x final = x inicial
+	add $29 $0 $18 # extra = x final
+	j fimpers4
+volta4:	
+	blt $18 $20 ida4 # loop da volta
+	addi $28 $0 65844 # esquerda
+	addi $18, $18, -1 # variacao do movimento
+fimpers4:
+	
+# armazenamento de parametros do personagem 3: npc
+	sw $22 0($5) # base  
+	sw $23 4($5) # altura 
+	sw $18 8($5) # x inicial
+	sw $19 12($5) # y inicial
+	sw $20 16($5) # x final
+	sw $21 20($5) # y final
+	sw $28 24($5) # inicio
+	sw $29 28($5) # extra
+
+pers5:
+
 	# aqui pode-se incrementar mais personagens no jogo
 	
 	j animacao
