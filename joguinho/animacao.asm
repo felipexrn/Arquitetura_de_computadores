@@ -471,7 +471,8 @@ controle:
 	j naodig
 	
 # caso queira alterar a velocidade do movimento aumente os valores
-dir:  		
+dir:  	
+	bge $18 117 fimpers1 	
 	addi $18, $18, 3 # incrementa endereco pra direita
 	lw $28 24($2) # inicio 
 	beq $28 67384 corredir # +0 
@@ -488,6 +489,7 @@ fimdir:
 	sw $28 24($2) # inicio
 	j naodig
 esq: 	#68680 69112 69544
+	blt $18 1 fimpers1 
 	addi $18, $18, -3 # incrementa endereco pra esquerda
 	lw $28 24($2) # inicio 
 	beq $28 68680 correesq # +0 
@@ -504,12 +506,14 @@ fimesq:
 	sw $28 24($2) # inicio
 	j naodig
 baixo: 	
+	bgt $19 50 fimpers1 
 	addi $19, $19, 3 # incrementa endereco pra baixo 
 	lw $28 24($2) # inicio 
 	addi $28 $0 67816
 	sw $28 24($2) # inicio
 	j naodig
 cima:	
+	blt $19 2 fimpers1 
 	addi $19, $19, -3 # incrementa endereco pra cima
 	lw $28 24($2) # inicio 
 	addi $28 $0 68248
@@ -525,6 +529,7 @@ naodig:
 # personagem pula	
 pulo:	
 	ble $29 $0 fimpers1
+	blt $19 1 fimpers1 
 	addi $29 $29 -1
 	addi $19, $19, -1 # incrementa endereco pra cima
 	lw $28 24($2) # inicio
