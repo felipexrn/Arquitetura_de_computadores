@@ -200,7 +200,7 @@
 .word 11 7 35 50 70 50 66768 67076 # personagem 3: offset do endereco do vetor 70040
 .word 9 12 64 46 100 50 67384 68680 # personagem 4: offset do endereco do vetor 70072
                                                                                                                 
-.text
+.text #
 
 # assets: tamanho 1142
 	# identificador, b x h, offset a partir do final cenario
@@ -247,7 +247,9 @@ main:
 
 # parametros globais
 	
-	addi $26 $0 8192 # tamanho da tela
+	addi $25 $0 128 # width
+	addi $30 $0 64 # heigth
+	mul $26 $25 $30 # tamanho da tela
 	addi $27 $0 1142 # tamanho dos assets + vetor dso paramentros
 	addi $6 $0 512 # width
 	addi $7 $0 4 # porporcao width
@@ -278,11 +280,11 @@ main:
 	
 	
 	lui $2 0x1001
-	addi $1 $0 69976 # personagem[0]
+	addi $1 $0 70072 # personagem[0]
 	add $2 $2 $1
 	
 	lui $3 0x1001
-	addi $1 $0 70072#70008 # personagem[1]
+	addi $1 $0 70008 # personagem[1]
 	add $3 $3 $1
 	
 	lui $4 0x1001
@@ -290,13 +292,14 @@ main:
 	add $4 $4 $1
 	
 	lui $5 0x1001
-	addi $1 $0 70072 # personagem[3]
+	addi $1 $0 69976 # personagem[3]
 	add $5 $5 $1
 
 	
 # laco de repeticao para personagem na tela
 animacao:
 	bne  $0, $0, fimanimacao # comparacao de posicao
+	
 	
 # carregamento de parametros de personagem
 
@@ -359,8 +362,35 @@ pers1:
 	add $12, $0, $19 # y do canto superior esquerdo
 	jal carregafundo
 	
-	bge $18, $20 pers2
-	addi $18, $18, 2 # variacao do movimento
+controle:
+	lui $8, 0xffff # tecla foi digitada
+	lw $11, 0($8)
+	beq $11, $0, naodig # se != 0 digitou algo
+	addi $12, $0, 'd'
+	lw $13, 4($8) # tecla digitada pelo usuario
+	beq $12, $13, dir # se for d 
+	addi $12, $0, 'a'
+	beq $12, $13, esq # se for a
+	addi $12, $0, 's'
+	beq $12, $13, baixo # se for s
+	addi $12, $0, 'w'
+	beq $12, $13, cima # se for w 
+	addi $12, $0, ' '
+	beq $12, $13, end # se for ' '
+	j naodig
+dir:  		
+	addi $18, $18, 1 # incrementa endereco pra direita
+	j naodig
+esq: 	
+	addi $18, $18, -1 # incrementa endereco pra esquerda
+	j naodig
+baixo: 	
+	addi $19, $19, 1 # incrementa endereco pra baixo  
+	j naodig
+cima:	
+	addi $19, $19, -1 # incrementa endereco pra cima   
+naodig:
+	# faz alguma coisa ou nao
 	
 	sw $22 0($2) # base  
 	sw $23 4($2) # altura 
