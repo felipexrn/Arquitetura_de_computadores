@@ -1,3 +1,80 @@
+# Programa para animar personagens automatos e personagens controlaveis 
+# Orientacoes para usar este programa:
+
+# Configuracoes graficas:
+	# Display Width: conforme display
+	# Proporcao de wifth: conforme display
+	# Quantidade de colunas: conforme cenario
+	# Quantidade de linhas: conforme cenario
+	# Tamanho dos assets: conforme personagens e vetores
+
+# Mapa de bits:
+	# Copie o mapa de bits do cenario
+	# Copie o mapa de bits dos personagens
+	# Cole entre .data e .text
+	
+# Vetores de parametros dos personagens:
+	# crie um vetor para cada personagem
+	# nesta ordem preencha os valores no vetor:
+	
+	# [0] base 
+	# [1] altura
+	# [2] x inicial
+	# [3] y inicial
+	# [4] x final,
+	# [5] y final,
+	# [6] offset do inicio de personagem,
+	# [7] offset do inicio de personagem invertido (opcional)
+	
+	# Cole os vetores entre .data e .text
+	
+# Assets: calcular o espaco de memoria usado pelos personagens e vetores:
+	
+	# identificador, b x h, tamanho
+	# personagem 1: porta or direita, 11 x 7, 77
+	# personagem 2: porta or esquerda, 11 x 7, 77
+	# personagem 3: porta and direita, 11 x 7, 77
+	# personagem 4: porta and esquerda, 11 x 7, 77
+	# personagem 5: porta not direita, 11 x 7, 77
+	# personagem 6: porta not esquerda, 11 x 7, 77
+	# personagem 7: protagonista parado direita, 9 x 12, 108
+	# personagem 8: protagonista andando direita, 9 x 12, 108
+	# personagem 9: protagonista correndo direita, 9 x 12, 108     
+	# personagem 10: protagonista parado esquerda, 9 x 12, 108
+	# personagem 11: protagonista andando esquerda, 9 x 12, 108     
+	# personagem 12: protagonista correndo esquerda, 9 x 12, 108
+	# vetor com parametros, 8 x 4, 32
+	
+	# tamanho total dos assets = 1142
+	
+# Calculo dos enderecos:
+	# A = colunas do cenario * larguras do cenario
+	# B = A * 4 inicio do cenario fora da tela 
+	# C = B * 2 inicio do primeiro personagem
+	# D = colunas do personagem * linhas do personagem
+	# E = D * 4
+	# F = E + C  inicio do segundo persoangem
+	# repete-se D, E e F para obter o inicio dos personagens
+	# ao terminar o ultimo personagem tem-se o inicio do vetor 1
+	# G = tamanho do vetor * 4
+	# H = G + F inicio do segundo vetor
+	# repete-se G e H para obter o inicio dos demais vetores
+	
+# Controle de personagem:
+	# d move o personagem para a direita
+	# w move o personagem para cima
+	# s mode o personagem para baixo
+	# d mode o personagem para esquerda
+	# ' ' encerra o programa
+	
+# Movimento automatico:
+	# Configure os eixos do movimento
+	# Configure o incremento (velocidade) do movimento 
+
+# -----------------------------------------------------------
+
+# MAPA DE BITS DO CENARIO:
+
 .data
 # cenario: endereco do inicio em 0x10010000 + 32768, tamanho 128 x 64
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9
@@ -64,7 +141,10 @@
 .word 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f
 .word 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f
 .word 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xb87e3f 0xb87e3f 0xb87e3f 0xb87e3f
-# porta or direita 11 x 7                                       
+
+# MAPA DE BITS DOS PERSONAGENS:
+
+# personagem 1: porta or direita 11 x 7                                       
 .word 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
 .word 0x00ff00 0x00ff00 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9                           
@@ -72,7 +152,7 @@
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                            
 .word 0x009900 0x009900 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                            
 .word 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
-# porta or esquerda  11 x 7                                       
+# personagem 2: porta or esquerda  11 x 7                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9                           
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x009900 0x009900                           
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9                          
@@ -80,7 +160,7 @@
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                          
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x00ff00 0x00ff00                          
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9                          
-# porta and direita  11 x 7                                      
+# personagem 3: porta and direita  11 x 7                                      
 .word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                          
 .word 0x00ff00 0x00ff00 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9                          
 .word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                           
@@ -88,7 +168,7 @@
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                         
 .word 0x00ff00 0x00ff00 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9                         
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                         
-# porta and esquerda  11 x 7                                     
+# personagem 4: porta and esquerda  11 x 7                                     
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                          
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x009900 0x009900                          
 .word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                          
@@ -96,7 +176,7 @@
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                          
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x009900 0x009900                           
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                          
-# porta not direita  11 x 7                                      
+# personagem 5: porta not direita  11 x 7                                      
 .word 0x88e3e9 0x88e3e9 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
 .word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
 .word 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
@@ -104,7 +184,7 @@
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                          
 .word 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
 .word 0x88e3e9 0x88e3e9 0xdddddd 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                           
-# porta not esquerda  11 x 7                                      
+# personagem 6: porta not esquerda  11 x 7                                      
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0x88e3e9 0x88e3e9                          
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                          
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0xeeeeee 0x88e3e9 0x88e3e9                         
@@ -112,7 +192,7 @@
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                           
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0xdddddd 0xdddddd 0x88e3e9 0x88e3e9                         
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0xdddddd 0x88e3e9 0x88e3e9                          
-# personagem parado direita  9 x 12                                      
+# personagem 7: protagonista parado direita  9 x 12                                      
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9 
 .word 0x88e3e9 0x88e3e9 0x000000 0xc09e79 0xe4bc90 0x000000 0xe4bc90 0x88e3e9 0x88e3e9
@@ -125,7 +205,7 @@
 .word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9
 .word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9
 .word 0x88e3e9 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x88e3e9
-# personagem andando direita  9 x 12                                                 
+# personagem 8: protagonista andando direita  9 x 12                                                 
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9 
@@ -138,7 +218,7 @@
 .word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9 
 .word 0x88e3e9 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x002c79 0x003eac 0x88e3e9 0x88e3e9
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x88e3e9 0x000000 0x000000 0x000000 0x88e3e9
-# personagem correndo direita  9 x 12                                                 
+# personagem 9: protagonista correndo direita  9 x 12                                                 
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0xe4bc90 0xe4bc90 0x88e3e9 0x88e3e9 0x88e3e9
 .word 0x88e3e9 0x88e3e9 0x000000 0xc09e79 0xe4bc90 0x000000 0xe4bc90 0x88e3e9 0x88e3e9
@@ -151,7 +231,7 @@
 .word 0x88e3e9 0x002c79 0x002c79 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x88e3e9 
 .word 0x000000 0x002c79 0x002c79 0x002c79 0x002c79 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 
 .word 0x000000 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
-# personagem parado esqueda  9 x 12                                                                                                                                
+# personagem 10: protagonista parado esqueda  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0xe4bc90 0x000000 0xe4bc90 0xc09e79 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
@@ -164,7 +244,7 @@
 .word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 0x000000 0x88e3e9                                                                                                                       
-# personagem andando esqueda  9 x 12                                                                                                                                
+# personagem 11: protagonista andando esqueda  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
@@ -177,7 +257,7 @@
 .word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x003eac 0x002c79 0x88e3e9 0x003eac 0x003eac 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x000000 0x000000 0x000000 0x88e3e9 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
-# personagem correndo esqueda  9 x 12                                                                                                                                
+# personagem 12: protagonista correndo esqueda  9 x 12                                                                                                                                
 .word 0x88e3e9 0x88e3e9 0x000000 0x000000 0x000000 0x000000 0x88e3e9 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0xe4bc90 0xe4bc90 0x000000 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0xe4bc90 0x000000 0xe4bc90 0xc09e79 0x000000 0x88e3e9 0x88e3e9                                                                                                                       
@@ -190,74 +270,40 @@
 .word 0x88e3e9 0x003eac 0x003eac 0x003eac 0x003eac 0x003eac 0x002c79 0x002c79 0x88e3e9                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x002c79 0x002c79 0x002c79 0x002c79 0x000000                                                                                                                       
 .word 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x88e3e9 0x000000 
-
 # endereco fim do cenario 0x10010000 + 65536
 
-# vetor com paramentros dos personagens 0x10010000 + 69976
-# b, h, x inicial, y inicial, x final, y, final, offset endereco direita, offset endereco esquerda
-.word 11 7 15 20 100 20 65536 65844 # personagem 1: offset do endereco do vetor 69976
-.word 11 7 25 35 60 35 66152 66460 # personagem 2: offset do endereco do vetor 70008
-.word 11 7 35 50 70 50 66768 67076 # personagem 3: offset do endereco do vetor 70040
-.word 9 12 64 46 100 50 67384 68680 # personagem 4: offset do endereco do vetor 70072
-                                                                                                                
-.text #
+# VETORES COM PARAMETROS DOS PERSONAGENS
 
-# assets: tamanho 1142
-	# identificador, b x h, offset a partir do final cenario
-	# porta or direita, 11 x 7, 4
-	# porta or esquerda, 11 x 7, 312
-	# porta and direita, 11 x 7, 620
-	# porta and esquerda, 11 x 7, 928
-	# porta not direita, 11 x 7, 1236
-	# porta not esquerda, 11 x 7, 1544
-	# protagonista parado direita, 9 x 12, 1852 
-	# protagonista andando direita, 9 x 12, 2284
-	# protagonista correndo direita, 9 x 12, 2716     
-	# protagonista parado esquerda, 9 x 12, 3148
-	# protagonista andando esquerda, 9 x 12, 3580     
-	# protagonista correndo esquerda, 9 x 12, 4012
-	# vetor com parametros, 8 x 4, 4444
+# Ordem dos parametros do vetor:
+# base, altura, x inicial, y inicial, x final, y, final, offset inicio, offset invertido
 
+# vetor 1: endereco 0x10010000 + 69976
+.word 11 7 15 20 100 20 65536 65844 
+# vetor 2: endereco 0x10010000 + 70008
+.word 11 7 25 35 60 35 66152 66460 
+# vetor 3: endereco 0x10010000 + 70040
+.word 11 7 35 50 70 50 66768 67076 
+# vetor 4: endereco 0x10010000 + 70072
+.word 9 12 64 46 100 50 67384 68680 
 
-# orientacoes:
-# este programa funciona para as seguintes configuracoes graficas:
+# ------------------------------------------------------------
+
+# PROGRAMA                                                                                                        
+                                                                                                                                                                                                                                                                                                                                    
+.text 
+
+main:
+
+# Parametros globais:
 	
-	# Unit Width in Pixels: 4
-	# Unit Height in Pixels: 4
-	# Display Width in Pixels: 512
-	# Display Height in Pixels: 256
-	
-# copie e cole o mapa de bits do cenario e o mapa dos personagens entre .data e .text
-# adicione no vetor de parametros dos personagens:
-	# base,
-	# altura
-	# x inicial, 
-	# y inicial,
-	# x final,
-	# y final,
-	# offset do inicio de personagem
-	# offset do inicio de personagem invertido (opcional)
-	
-# altere como o movimento acontecera na tela modificando o incremento da animacao
-# configure o controle de personagem conforme desejado:
-	# a move o personagem para a direita
-	# w move o personagem para cima
-	# s mode o personagem para baixo
-	# d mode o personagem para esquerda
-	# ' ' encerra o programa
-
-main: 	
-
-# parametros globais
-	
-	addi $25 $0 128 # quantidade de colunas do mapa
-	addi $30 $0 64 # quantidade de linhas do mapa
-	mul $26 $25 $30 # area do mapa
+	addi $25 $0 128 # quantidade de colunas do cenario
+	addi $30 $0 64 # quantidade de linhas do cenario
+	mul $26 $25 $30 # area do cenario
 	addi $27 $0 1142 # assets + vetor 
-	addi $6 $0 512 # width
-	addi $7 $0 4 # porporcao width
+	addi $6 $0 512 # width do display
+	addi $7 $0 4 # porporcao width do display
 	
-# chamada de funcao para guardar cenario e personagem na memoria
+# Chamada de funcao para guardar cenario, personagens e vetores na memoria
 	add $10, $27, $26 # contador da iteracao
 	add $8 $0 $10
 	sll $8 $8 2
@@ -270,7 +316,7 @@ main:
 	sub $24 $24 $1 # local a ser armazenado
 	jal store
 	
-# chamada de funcao para carregar cenario na tela
+# Chamada de funcao para carregar cenario na tela
 	lui $8, 0x1001 # local a ser escrito
 	add $24 $0 $26
 	sll $24 $24 2
@@ -278,7 +324,7 @@ main:
 	addi $10, $0, 0 # contador
 	jal load
 	
-# apontar pro vetores dos personagens 
+# Ponteiros para vetores dos personagens 
 	lui $2 0x1001
 	addi $1 $0 70072 # personagem1[0]
 	add $2 $2 $1
@@ -294,14 +340,16 @@ main:
 	lui $5 0x1001
 	addi $1 $0 69976 # personagem4[0]
 	add $5 $5 $1
-
 	
-# laco de repeticao para personagem na tela
+# loop da animacao da tela:
+	# desenha todos personagens
+	# aguarda um tempo
+	# apaga todos os personagens 
+	# controla movimento dos personagens
 animacao:
 	bne  $0, $0, fimanimacao # comparacao de posicao
 	
-# carregamento de parametros de personagem
-
+# carregamento de parametros do personagem 1: protagonista
 	lw $22 0($2) # base  
 	lw $23 4($2) # altura 
 	lw $18 8($2) # x inicial
@@ -311,8 +359,7 @@ animacao:
 	lw $28 24($2) # direita
 	lw $29 28($2) # esquerda
 	
-	# chamada de funcao para
-	# carregar personagem na tela 
+# chamada de funcao para carregar personagem na tela 
 	addi $8 $0 0x10010000
 	add $8 $8 $28 # endereco do inicio do personagem na memoria
 	add $9, $0, $22 # base (colunas do desenho)
@@ -321,8 +368,7 @@ animacao:
 	add $12, $0, $19 # y
 	jal personagem
 	
-# carregamento de parametros de personagem
-	
+# carregamento de parametros de personagem 2: npc
 	lw $22 0($3) # base  
 	lw $23 4($3) # altura 
 	lw $18 8($3) # x inicial
@@ -332,8 +378,7 @@ animacao:
 	lw $28 24($3) # direita
 	lw $29 28($3) # esquerda
 	
-	# chamada de funcao para
-	# carregar personagem na tela 
+# chamada de funcao para carregar personagem na tela 
 	addi $8 $0 0x10010000
 	add $8 $8 $28 # endereco do inicio do personagem na memoria
 	add $9, $0, $22 # base (colunas do desenho)
@@ -342,10 +387,14 @@ animacao:
 	add $12, $0, $19 # y
 	jal personagem
 	
-# tempo da animacao
+# tempo de espera da animacao
 	addi $8, $0, 25000 # taxa de tempo de espera
 	jal timer
+	
+# apagar persoangens da tela
 pers1:	
+
+# carregamento de parametros do personagem 1: protagonista
 	lw $22 0($2) # base  
 	lw $23 4($2) # altura 
 	lw $18 8($2) # x inicial
@@ -354,13 +403,16 @@ pers1:
 	lw $21 20($2) # y final
 	lw $28 24($2) # direita
 	lw $29 28($2) # esquerda
-	
+
+# chamada de funcao para apagar personagem
 	add $9, $0, $22 # base (colunas do desenho)
 	add $10, $0, $23 # altura (linhas do desenho)
 	add $11, $0, $18 # x do canto superior esquerdo
 	add $12, $0, $19 # y do canto superior esquerdo
 	jal carregafundo
 	
+
+# controle manual de personagem:	
 controle:
 	lui $8, 0xffff # tecla foi digitada
 	lw $11, 0($8)
@@ -377,6 +429,8 @@ controle:
 	addi $12, $0, ' '
 	beq $12, $13, end # se for ' '
 	j naodig
+	
+# caso queira alterar a velocidade do movimento aumente os valores
 dir:  		
 	addi $18, $18, 1 # incrementa endereco pra direita
 	j naodig
@@ -389,8 +443,11 @@ baixo:
 cima:	
 	addi $19, $19, -1 # incrementa endereco pra cima   
 naodig:
-	# faz alguma coisa ou nao
+	# aqui pode-se fazer algo quando n„o h· entrada de teclas
 	
+	# continua para o proximo personagem
+	
+# armazenamento de parametros do personagem 1: protagonista
 	sw $22 0($2) # base  
 	sw $23 4($2) # altura 
 	sw $18 8($2) # x inicial
@@ -401,6 +458,8 @@ naodig:
 	sw $29 28($2) # esquerda
 	
 pers2:
+
+# carregamento de parametros de personagem 2: npc
 	lw $22 0($3) # base  
 	lw $23 4($3) # altura 
 	lw $18 8($3) # x inicial
@@ -410,15 +469,18 @@ pers2:
 	lw $28 24($3) # direita
 	lw $29 28($3) # esquerda
 	
+# chamada de funcao para apagar personagem
 	add $9, $0, $22 # base (colunas do desenho)
 	add $10, $0, $23 # altura (linhas do desenho)
 	add $11, $0, $18 # x do canto superior esquerdo
 	add $12, $0, $19 # y do canto superior esquerdo
 	jal carregafundo
 	
-	bge $18, $20 pers3
+# controle automatico de movimento de personagem
+	bge $18, $20 pers3 # continua para o proximo personagem
 	addi $18, $18, 1 # variacao do movimento
 	
+# armazenamento de parametros do personagem 2: npc
 	sw $22 0($3) # base  
 	sw $23 4($3) # altura 
 	sw $18 8($3) # x inicial
@@ -429,10 +491,11 @@ pers2:
 	sw $29 28($3) # esquerda
 
 pers3:	
+	# aqui pode-se incrementar mais personagens no jogo
+	
 	j animacao
 
 fimanimacao:
-
 	
 end:
 	addi $2, $0, 10 # encerra o programa
@@ -452,7 +515,8 @@ load:
 	bne $10, $26, load
 	jr $31
 	
-# funcao para guardar cenario e personagem na memoria	
+# funcao para guardar cenario e personagem na memoria
+# paramentros:
 	# local a ser lido $8
 	# local a ser armazenado $24
 	# contador $10
@@ -465,9 +529,8 @@ store:
 	bne $10, 0, store
 	jr $31
 
-
 # funcao para desenhar personagem na tela
-# parametros da funcao:
+# parametros:
 	# endereco inicial: $8 
 	# Largura do personagem: $9
 	# altura do personagem: $10
@@ -475,54 +538,51 @@ store:
 	# Saber o y: $12
 personagem:  
 	lui $15, 0x1001
-	sll $11, $11, 2
+	sll $11, $11, 2 # enderecos a percorrer no eixo x
 	div $6 $7 # width / proporcao
 	mflo $1
-	sll $1 $1 2 # quantidade de memoria em width
+	sll $1 $1 2 # enderecos a percorrer no eixo y
 	mul $12, $12, $1 
 	add $15, $15, $11
 	add $15, $15, $12 # posicao inicial a ser desenhada
-	add $13, $0, $9 # largura 
+	add $13, $0, $9 # quantidade de colunas
 laco1:	beq $10, $0, fimlaco1
 laco2:	beq $9, $0, fimlaco2
 	lw $14, 0($8) # local a ler
 	sw $14, 0($15) # local a desenhar.
 	addi $8, $8, 4 
 	addi $15, $15, 4
-	addi $9, $9, -1 # largura --
+	addi $9, $9, -1 # colunas--
 	j laco2
 fimlaco2:   
-	# addi $1 $0 width tela
-	# div $1 proporcao width
-	# sll $1 $1 2  
 	div $6 $7 # width / proporcao
 	mflo $1
-	sll $1 $1 2 # quantidade de memoria em width
+	sll $1 $1 2 # enderecos a percorrer no eixo y
 	add $15, $15, $1
 	sll $16, $13, 2 
-	sub $15, $15, $16
-	add $9, $0, $13 # largura valor inicial
-	addi $10, $10, -1 # altura --  
+	sub $15, $15, $16 # volta para a coluna inicial
+	add $9, $0, $13 # valor inicial de colunas 
+	addi $10, $10, -1 # linhas--  
 	j laco1  
 fimlaco1: 
 	jr $31
             
-# funcao para carregar parte do cen√°rio.
-# parametros da funcao: 
+# funcao para carregar parte do cenario.
+# parametros: 
 	# Largura do personagem: $9
 	# altura do personagem: $10
 	# Saber o x: $11
 	# Saber o y: $12
 carregafundo:  
 	lui $15, 0x1001
-	sll $11, $11, 2
+	sll $11, $11, 2 # enderecos a percorrer no eixo x
 	div $6 $7 # width / proporcao
 	mflo $1
-	sll $1 $1 2 # quantidade de memoria em width
+	sll $1 $1 2 # enderecos a percorrer no eixo y
 	mul $12, $12, $1 
 	add $15, $15, $11
 	add $15, $15, $12 # posicao inicial a ser desenhada
-	add $13, $0, $9 # largura        
+	add $13, $0, $9 # quantidade de colunas        
 	lui $8, 0x1001 
 	add $8, $8, $11
 	add $8, $8, $12 # posicao inicial a ser desenhada
@@ -538,25 +598,26 @@ laco2.1:
 	sw $14, 0($15) # local a desenhar.
 	addi $8, $8, 4 
 	addi $15, $15, 4
-	addi $9, $9, -1 # largura --
+	addi $9, $9, -1 # colunas--
 	j laco2.1
 fimlaco2.1:    
 	div $6 $7 # width / proporcao
 	mflo $1
-	sll $1 $1 2 # quantidade de memoria em width
+	sll $1 $1 2 # enderecos a percorrer no eixo y
 	add $15, $15, $1
 	add $8, $8, $1
 	sll $16, $13, 2 
-	sub $8, $8, $16
-	sub $15, $15, $16
-	add $9, $0, $13 # largura valor inicial
-	addi $10, $10, -1 # altura --  
+	sub $8, $8, $16 # volta para a coluna inicial
+	sub $15, $15, $16 
+	add $9, $0, $13 # valor inicial de colunas
+	addi $10, $10, -1 # linahs--  
 	j laco1.1  
 fimlaco1.1: 
 	jr $31
 	
 # funcao para passar tempo.
-# taxa de espera: $8          
+# parametros:
+	# taxa de espera: $8          
 timer:	
 	beq $8, $0, fimtimer
 	nop
