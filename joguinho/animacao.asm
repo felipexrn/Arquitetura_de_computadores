@@ -236,27 +236,28 @@
 	# x final,
 	# y final,
 	# offset do inicio de personagem
-# altere como o movimento acontecer� na tela modificando o laco da animacao
+	# offset do inicio de personagem invertido (opcional)
+	
+# altere como o movimento acontecera na tela modificando o incremento da animacao
 # configure o controle de personagem conforme desejado:
 	# a move o personagem para a direita
 	# w move o personagem para cima
 	# s mode o personagem para baixo
 	# d mode o personagem para esquerda
+	# ' ' encerra o programa
 
 main: 	
 
 # parametros globais
 	
-	addi $25 $0 128 # width
-	addi $30 $0 64 # heigth
-	mul $26 $25 $30 # tamanho da tela
-	addi $27 $0 1142 # tamanho dos assets + vetor dso paramentros
+	addi $25 $0 128 # quantidade de colunas do mapa
+	addi $30 $0 64 # quantidade de linhas do mapa
+	mul $26 $25 $30 # area do mapa
+	addi $27 $0 1142 # assets + vetor 
 	addi $6 $0 512 # width
 	addi $7 $0 4 # porporcao width
 	
-	# chamada de funcao para
-	# guardar cenario e
-	# personagem na memoria
+# chamada de funcao para guardar cenario e personagem na memoria
 	add $10, $27, $26 # contador da iteracao
 	add $8 $0 $10
 	sll $8 $8 2
@@ -269,8 +270,7 @@ main:
 	sub $24 $24 $1 # local a ser armazenado
 	jal store
 	
-	# chamada de funcao para
-	# carregar cenario na tela
+# chamada de funcao para carregar cenario na tela
 	lui $8, 0x1001 # local a ser escrito
 	add $24 $0 $26
 	sll $24 $24 2
@@ -278,28 +278,27 @@ main:
 	addi $10, $0, 0 # contador
 	jal load
 	
-	
+# apontar pro vetores dos personagens 
 	lui $2 0x1001
-	addi $1 $0 70072 # personagem[0]
+	addi $1 $0 70072 # personagem1[0]
 	add $2 $2 $1
 	
 	lui $3 0x1001
-	addi $1 $0 70008 # personagem[1]
+	addi $1 $0 70008 # personagem2[0]
 	add $3 $3 $1
 	
 	lui $4 0x1001
-	addi $1 $0 70040 # personagem[2]
+	addi $1 $0 70040 # personagem3[0]
 	add $4 $4 $1
 	
 	lui $5 0x1001
-	addi $1 $0 69976 # personagem[3]
+	addi $1 $0 69976 # personagem4[0]
 	add $5 $5 $1
 
 	
 # laco de repeticao para personagem na tela
 animacao:
 	bne  $0, $0, fimanimacao # comparacao de posicao
-	
 	
 # carregamento de parametros de personagem
 
