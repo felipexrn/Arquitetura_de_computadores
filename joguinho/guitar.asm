@@ -109,15 +109,15 @@ notaLaranjaImg:
 .word  0x000000  0xffffff  0xff8c00  0xff8c00  0xff8c00  0xffffff  0x000000 
 .word  0x000000  0x000000  0xffffff  0xffffff  0xffffff  0x000000  0x000000
 # vetor 1: endereco 0x10010000 + 66656
-.word 7 8 40 0 40 53 65536 0 
+.word 7 8 40 0 40 53 65536 'a' 
 # vetor 2: endereco 0x10010000 + 66688
-.word 7 8 50 0 50 53 65760 0 
+.word 7 8 50 0 50 53 65760 's'
 # vetor 3: endereco 0x10010000 + 66720
-.word 7 8 60 0 60 53 65984 0 
+.word 7 8 60 0 60 53 65984 'd' 
 # vetor 4: endereco 0x10010000 + 66752
-.word 7 8 70 0 70 53 66208 0 
+.word 7 8 70 0 70 53 66208 'f' 
 # vetor 5: endereco 0x10010000 + 66784
-.word 7 8 80 0 80 53 66432 0 
+.word 7 8 80 0 80 53 66432 'g' 
 # vetor 6: endereco 0x10010000 + 66816
 # notas musicais
 smk: .word 67 70 72 67 70 73 72 67 70 72 70 67
@@ -127,36 +127,6 @@ smk: .word 67 70 72 67 70 73 72 67 70 72 70 67
 
 .text
 main:
-
-# teste para verificar registradores livres
-
-	addi $1 $0 -1
-	addi $2 $0 -1
-	addi $3 $0 -1
-	addi $4 $0 -1
-	addi $5 $0 -1
-	addi $6 $0 -1
-	addi $7 $0 -1
-	addi $8 $0 -1
-	addi $9 $0 -1
-	addi $10 $0 -1
-	addi $11 $0 -1
-	addi $12 $0 -1
-	addi $13 $0 -1
-	addi $14 $0 -1
-	addi $15 $0 -1
-	addi $16 $0 -1
-	addi $17 $0 -1
-	addi $18 $0 -1
-	addi $19 $0 -1
-	addi $20 $0 -1
-	addi $21 $0 -1
-	addi $22 $0 -1
-	addi $23 $0 -1
-	addi $24 $0 -1
-	addi $25 $0 -1
-	addi $26 $0 -1
-	addi $27 $0 -1
 
 # Parametros globais:
 	
@@ -175,7 +145,7 @@ main:
 	lw $9 0($8)
 	div $9 $11
 	mflo $15 # correcao proporcao do display 
-	addi $30 $0 0x1001
+	lui $30 0x1001
 	addi $30 $30 66816
 	
 # Chamada de funcao para guardar cenario, personagens e vetores na memoria
@@ -360,11 +330,11 @@ pers1:
 # controle automatico de movimento de personagem
 
 ida1:	
-	bgt $19, $21 troca1 # loop da ida
+	bge $19, $21 troca1 # loop da ida
 	addi $19, $19, 4 # variacao do movimento
 	j fimpers1
 troca1:
-	add $19 $0 $29 # y = y inicial
+	addi $19 $0 0 # y = y inicial
 	j fimpers1
 fimpers1:
 
@@ -400,11 +370,11 @@ pers2:
 # controle automatico de movimento de personagem
 	
 ida2:	
-	bgt $19, $21 troca2 # loop da ida
+	bge $19, $21 troca2 # loop da ida
 	addi $19, $19, 1 # variacao do movimento
 	j fimpers2
 troca2:
-	add $19 $0 $29 # y = y inicial
+	addi $19 $0 0 # y = y inicial
 	j fimpers2
 fimpers2:
 	
@@ -437,11 +407,11 @@ pers3:
 # controle automatico de movimento de personagem
 	
 ida3:	
-	bgt $19, $21 troca3 # loop da ida
+	bge $19, $21 troca3 # loop da ida
 	addi $19, $19, 3 # variacao do movimento
 	j fimpers3
 troca3:
-	add $19 $0 $29 # y = y inicial
+	addi $19 $0 0 # y = y inicial
 	j fimpers3
 fimpers3:
 
@@ -474,11 +444,11 @@ pers4:
 # controle automatico de movimento de personagem
 	
 ida4:	
-	bgt $19, $21 troca4 # loop da ida
+	bge $19, $21 troca4 # loop da ida
 	addi $19, $19, 1 # variacao do movimento
 	j fimpers4
 troca4:
-	add $19 $0 $29 # y = y inicial
+	addi $19 $0 0 # y = y inicial
 	j fimpers4
 fimpers4:
 
@@ -511,11 +481,11 @@ pers5:
 # controle automatico de movimento de personagem
 	
 ida5:	
-	bgt $19, $21 troca5 # loop da ida
+	bge $19, $21 troca5 # loop da ida
 	addi $19, $19, 2 # variacao do movimento
 	j fimpers5
 troca5:
-	add $19 $0 $29 # y = y inicial
+	addi $19 $0 0 # y = y inicial
 	j fimpers5
 fimpers5:
 
@@ -746,17 +716,12 @@ controle:
 	lui $8, 0xffff # tecla foi digitada
 	lw $11, 0($8)
 	beq $11, $0, naodig # se != 0 digitou algo
-	addi $12, $0, 'a'
 	lw $13, 4($8) # tecla digitada pelo usuario
-	beq $12, $13, verde # se for a 
-	addi $12, $0, 's'
-	beq $12, $13, vermelha # se for s
-	addi $12, $0, 'd'
-	beq $12, $13, amarela # se for d
-	addi $12, $0, 'f'
-	beq $12, $13, azul # se for f
-	addi $12, $0, 'g'
-	beq $12, $13, laranja # se for g
+	beq $23, $13, verde # se for a 
+	beq $23, $13, vermelha # se for s
+	beq $23, $13, amarela # se for d
+	beq $23, $13, azul # se for f
+	beq $23, $13, laranja # se for g
 	addi $12 $0 ' '
 	beq $12, $13, end # se for ' '
 	j naodig
@@ -797,7 +762,7 @@ tocarNota:
 	lw $4 0($30)
 	addi $30 $30 4
 	
-	addi $2 $0 31 # servico MIDI
+	addi $2 $0 1 # servico MIDI 31
 	syscall
 	
 	addi $sp $sp 4
