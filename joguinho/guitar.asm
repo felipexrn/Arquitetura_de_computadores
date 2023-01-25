@@ -108,22 +108,36 @@ notaLaranjaImg:
 .word  0xffffff  0xff8c00  0xff8c00  0xff8c00  0xff8c00  0xff8c00  0xffffff 
 .word  0x000000  0xffffff  0xff8c00  0xff8c00  0xff8c00  0xffffff  0x000000 
 .word  0x000000  0x000000  0xffffff  0xffffff  0xffffff  0x000000  0x000000
-# vetor 1: endereco 0x10010000 + 66656
-.word 7 8 40 0 40 53 65536 'a' 
-# vetor 2: endereco 0x10010000 + 66688
-.word 7 8 50 0 50 53 65760 's'
-# vetor 3: endereco 0x10010000 + 66720
-.word 7 8 60 0 60 53 65984 'd' 
-# vetor 4: endereco 0x10010000 + 66752
-.word 7 8 70 0 70 53 66208 'f' 
-# vetor 5: endereco 0x10010000 + 66784
-.word 7 8 80 0 80 53 66432 'g' 
-# vetor 6: endereco 0x10010000 + 66816
+# vetor 01: endereco 0x10010000 + 66656
+.word 7 8 40 -10 -10 53 65536 'a' 
+# vetor 02: endereco 0x10010000 + 66688
+.word 7 8 50 -25 -25 53 65760 's'
+# vetor 03: endereco 0x10010000 + 66720
+.word 7 8 60 -40 -40 53 65984 'd' 
+# vetor 04: endereco 0x10010000 + 66752
+.word 7 8 70 -65 -65 53 66208 'f' 
+# vetor 05: endereco 0x10010000 + 66784
+.word 7 8 80 -80 -80 53 66432 'g' 
+# vetor 06: endereco 0x10010000 + 66816
+.word 7 8 40 -97 -97 53 65536 'a' 
+# vetor 07: endereco 0x10010000 + 66848
+.word 7 8 50 -105 -105 53 65760 's'
+# vetor 08: endereco 0x10010000 + 66880
+.word 7 8 60 -10 -10 53 65984 'd' 
+# vetor 09: endereco 0x10010000 + 66912
+.word 7 8 70 -25 -25 53 66208 'f' 
+# vetor 10: endereco 0x10010000 + 66944
+.word 7 8 80 -40 -40 53 66432 'g' 
+# vetor 11: endereco 0x10010000 + 66976
+.word 7 8 40 -70 -70 53 65536 'a' 
+# vetor 12: endereco 0x10010000 + 67008
+.word 7 8 50 -90 -90 53 65760 's'
 # notas musicais
-smk: .word 67 70 72 67 70 73 72 67 70 72 70 67
-# vetor 7: endereco 0x10010000 + 66864
-# width, height, proporcao, assets + vetores
-.word 512 256 4 340 0
+# vetor 13: endereco 0x10010000 + 67040
+.word 67 70 72 67 70 73 72 67 70 72 70 67
+# vetor 14: endereco 0x10010000 + 67088
+# width, height, proporcao, assets + vetores, ajuste tela, contador
+.word 512 256 4 393 0
 
 .text
 main:
@@ -131,7 +145,7 @@ main:
 # Parametros globais:
 	
 	lui $8 0x1001
-	addi $8 $8 34096
+	addi $8 $8 34320
 	lw $9 0($8) # width
 	lw $10 4($8) # height
 	lw $11 8($8) # proporcao
@@ -146,7 +160,7 @@ main:
 	div $9 $11
 	mflo $15 # correcao proporcao do display 
 	lui $30 0x1001
-	addi $30 $30 66816
+	addi $30 $30 67040
 	
 # Chamada de funcao para guardar cenario, personagens e vetores na memoria
 
@@ -174,35 +188,84 @@ main:
 # Ponteiros para vetores dos personagens 
 
 	lui $8 0x1001
-	addi $1 $0 66656 # personagem1[0]
+	addi $1 $0 66656 # personagem 01[0]
 	add $8 $8 $1
 	
 	sw $8 0($sp)
 	addi $sp $sp -4
 	
 	lui $8 0x1001
-	addi $1 $0 66688 # personagem2[0]
+	addi $1 $0 66688 # personagem 02[0]
 	add $8 $8 $1
 	
 	sw $8 0($sp)
 	addi $sp $sp -4
 	
 	lui $8 0x1001
-	addi $1 $0 66720 # personagem3[0]
+	addi $1 $0 66720 # personagem 03[0]
 	add $8 $8 $1
 	
 	sw $8 0($sp)
 	addi $sp $sp -4
 	
 	lui $8 0x1001
-	addi $1 $0 66752 # personagem4[0]
+	addi $1 $0 66752 # personagem 04[0]
 	add $8 $8 $1
 	
 	sw $8 0($sp)
 	addi $sp $sp -4
 	
 	lui $8 0x1001
-	addi $1 $0 66784 # personagem5[0]
+	addi $1 $0 66784 # personagem 05[0]
+	add $8 $8 $1
+	
+	sw $8 0($sp)
+	addi $sp $sp -4
+	
+	lui $8 0x1001
+	addi $1 $0 66816 # personagem 06[0]
+	add $8 $8 $1
+	
+	sw $8 0($sp)
+	addi $sp $sp -4
+	
+	lui $8 0x1001
+	addi $1 $0 66848 # personagem 07[0]
+	add $8 $8 $1
+	
+	sw $8 0($sp)
+	addi $sp $sp -4
+	
+	lui $8 0x1001
+	addi $1 $0 66880 # personagem 08[0]
+	add $8 $8 $1
+	
+	sw $8 0($sp)
+	addi $sp $sp -4
+	
+	lui $8 0x1001
+	addi $1 $0 66912 # personagem 09[0]
+	add $8 $8 $1
+	
+	sw $8 0($sp)
+	addi $sp $sp -4
+	
+	lui $8 0x1001
+	addi $1 $0 66944 # personagem 10[0]
+	add $8 $8 $1
+	
+	sw $8 0($sp)
+	addi $sp $sp -4
+	
+	lui $8 0x1001
+	addi $1 $0 66976 # personagem 11[0]
+	add $8 $8 $1
+	
+	sw $8 0($sp)
+	addi $sp $sp -4
+	
+	lui $8 0x1001
+	addi $1 $0 67008 # personagem 12[0]
 	add $8 $8 $1
 	
 	sw $8 0($sp)
@@ -214,296 +277,86 @@ main:
 	# aguarda um tempo
 	# apaga todos os personagens 
 	# controla movimento dos personagens
+
+contador:
+
+	#addi $10 $0 48 
+	#sw $10 0($sp)
+	#addi $sp $sp -4
+	
 animacao:
+
+	
 	bne  $0, $0, fimanimacao # comparacao de posicao
-	
-# carregamento de parametros do personagem 1: protagonista
 
-	addi $sp $sp 20
+# offsets para pilha
+# 1 2  3  4  5  6  7  8  9 10 11 12
+# 4 8 12 16 20 24 28 32 36 40 44 48
+
+# desenhar personagens na tela
+
+	addi $9 $0 48
+write:
+	blt $9 24 endwrite
+	sw $9 0($sp)
+	
+	add $sp $sp $9
 	lw $8 0($sp)
-	addi $sp $sp -20
+	sub $sp $sp $9
 	
-	jal loadparametro
-	
-# chamada de funcao para carregar personagem na tela 
-	addi $24 $0 0x10010000
-	add $24 $24 $22 # endereco do inicio do personagem na memoria
-	add $13, $0, $16 # base (colunas do desenho)
-	add $14, $0, $17 # altura (linhas do desenho)
-	add $25, $0, $18 # x
-	add $26, $0, $19 # y
-	jal personagem
-	
-	
-# carregamento de parametros de personagem 2: npc
-
-	addi $sp $sp 16
-	lw $8 0($sp)
-	addi $sp $sp -16
-	
-	jal loadparametro
-	
-# chamada de funcao para carregar personagem na tela 
-	addi $24 $0 0x10010000
-	add $24 $24 $22 # endereco do inicio do personagem na memoria
-	add $13, $0, $16 # base (colunas do desenho)
-	add $14, $0, $17 # altura (linhas do desenho)
-	add $25, $0, $18 # x
-	add $26, $0, $19 # y
-	jal personagem
-	
-# carregamento de parametros de personagem 3: npc
-
-	addi $sp $sp 12
-	lw $8 0($sp)
-	addi $sp $sp -12
-
-	jal loadparametro
-	
-# chamada de funcao para carregar personagem na tela 
-	addi $24 $0 0x10010000
-	add $24 $24 $22 # endereco do inicio do personagem na memoria
-	add $13, $0, $16 # base (colunas do desenho)
-	add $14, $0, $17 # altura (linhas do desenho)
-	add $25, $0, $18 # x
-	add $26, $0, $19 # y
-	jal personagem
-	
-# carregamento de parametros de personagem 4: npc
-
-	addi $sp $sp 8
-	lw $8 0($sp)
-	addi $sp $sp -8
-
-	jal loadparametro
-	
-# chamada de funcao para carregar personagem na tela 
-	addi $24 $0 0x10010000
-	add $24 $24 $22 # endereco do inicio do personagem na memoria
-	add $13, $0, $16 # base (colunas do desenho)
-	add $14, $0, $17 # altura (linhas do desenho)
-	add $25, $0, $18 # x
-	add $26, $0, $19 # y
-	jal personagem
-	
-	
-# carregamento de parametros de personagem 5: npc
-
-	addi $sp $sp 4
-	lw $8 0($sp)
 	addi $sp $sp -4
-
-	jal loadparametro
 	
-# chamada de funcao para carregar personagem na tela 
-	addi $24 $0 0x10010000
-	add $24 $24 $22 # endereco do inicio do personagem na memoria
-	add $13, $0, $16 # base (colunas do desenho)
-	add $14, $0, $17 # altura (linhas do desenho)
-	add $25, $0, $18 # x
-	add $26, $0, $19 # y
+	jal loadparametro
 	jal personagem
+	
+	addi $sp $sp 4
+	lw $9 0($sp)
+	addi $9 $9 -4
+	j write
+endwrite:
 	
 # tempo de espera da animacao
-	addi $8, $0, 12000 # taxa de tempo de espera
+	addi $8, $0, 7000 # taxa de tempo de espera
 	jal timer
 	
-# apagar persoangens da tela
-pers1:	
+# apagar e movimentar persoangens na tela
 
-# carregamento de parametros do personagem 1: protagonista
-
-	addi $sp $sp 20
+	addi $9 $0 48
+erase:	
+	blt $9 24 enderase
+	sw $9 0($sp)
+	
+	add $sp $sp $9
 	lw $8 0($sp)
-	addi $sp $sp -20
-
-	jal loadparametro
-
-# chamada de funcao para apagar personagem
-	add $9, $0, $16 # base (colunas do desenho)
-	add $10, $0, $17 # altura (linhas do desenho)
-	add $11, $0, $18 # x do canto superior esquerdo
-	add $12, $0, $19 # y do canto superior esquerdo
+	sub $sp $sp $9
 	
-	jal carregafundo
-	
-# controle automatico de movimento de personagem
-
-ida1:	
-	bge $19, $21 troca1 # loop da ida
-	addi $19, $19, 4 # variacao do movimento
-	j fimpers1
-troca1:
-	addi $19 $0 0 # y = y inicial
-	j fimpers1
-fimpers1:
-
-	addi $sp $sp 20
-	lw $8 0($sp)
-	addi $sp $sp -20
-	
-	jal storeparametro
-
-	jal controle
-	
-	
-# armazenamento de parametros do personagem 1: protagonista
-	
-	
-pers2:
-
-# carregamento de parametros de personagem 2: npc
-
-	addi $sp $sp 16
-	lw $8 0($sp)
-	addi $sp $sp -16
-
-	jal loadparametro
-	
-# chamada de funcao para apagar personagem
-	add $9, $0, $16 # base (colunas do desenho)
-	add $10, $0, $17 # altura (linhas do desenho)
-	add $11, $0, $18 # x do canto superior esquerdo
-	add $12, $0, $19 # y do canto superior esquerdo
-	jal carregafundo
-	
-# controle automatico de movimento de personagem
-	
-ida2:	
-	bge $19, $21 troca2 # loop da ida
-	addi $19, $19, 1 # variacao do movimento
-	j fimpers2
-troca2:
-	addi $19 $0 0 # y = y inicial
-	j fimpers2
-fimpers2:
-	
-# armazenamento de parametros do personagem 2: npc
-	
-	addi $sp $sp 16
-	lw $8 0($sp)
-	addi $sp $sp -16
-	
-	jal storeparametro
-	
-	jal controle
-
-pers3:	
-# carregamento de parametros de personagem 3: npc
-
-	addi $sp $sp 12
-	lw $8 0($sp)
-	addi $sp $sp -12
-
-	jal loadparametro
-	
-# chamada de funcao para apagar personagem
-	add $9, $0, $16 # base (colunas do desenho)
-	add $10, $0, $17 # altura (linhas do desenho)
-	add $11, $0, $18 # x do canto superior esquerdo
-	add $12, $0, $19 # y do canto superior esquerdo
-	jal carregafundo
-	
-# controle automatico de movimento de personagem
-	
-ida3:	
-	bge $19, $21 troca3 # loop da ida
-	addi $19, $19, 3 # variacao do movimento
-	j fimpers3
-troca3:
-	addi $19 $0 0 # y = y inicial
-	j fimpers3
-fimpers3:
-
-	jal controle
-	
-# armazenamento de parametros do personagem 3: npc
-	
-	addi $sp $sp 12
-	lw $8 0($sp)
-	addi $sp $sp -12
-	
-	jal storeparametro
-
-pers4:	
-# carregamento de parametros de personagem 4: npc
-
-	addi $sp $sp 8
-	lw $8 0($sp)
-	addi $sp $sp -8
-
-	jal loadparametro
-	
-# chamada de funcao para apagar personagem
-	add $9, $0, $16 # base (colunas do desenho)
-	add $10, $0, $17 # altura (linhas do desenho)
-	add $11, $0, $18 # x do canto superior esquerdo
-	add $12, $0, $19 # y do canto superior esquerdo
-	jal carregafundo
-	
-# controle automatico de movimento de personagem
-	
-ida4:	
-	bge $19, $21 troca4 # loop da ida
-	addi $19, $19, 1 # variacao do movimento
-	j fimpers4
-troca4:
-	addi $19 $0 0 # y = y inicial
-	j fimpers4
-fimpers4:
-
-	jal controle
-	
-# armazenamento de parametros do personagem 4: npc
-
-	addi $sp $sp 8
-	lw $8 0($sp)
-	addi $sp $sp -8
-	
-	jal storeparametro
-
-pers5:	
-# carregamento de parametros de personagem 5: npc
-
-	addi $sp $sp 4
-	lw $8 0($sp)
 	addi $sp $sp -4
 
 	jal loadparametro
-	
-# chamada de funcao para apagar personagem
-	add $9, $0, $16 # base (colunas do desenho)
-	add $10, $0, $17 # altura (linhas do desenho)
-	add $11, $0, $18 # x do canto superior esquerdo
-	add $12, $0, $19 # y do canto superior esquerdo
 	jal carregafundo
-	
-# controle automatico de movimento de personagem
-	
-ida5:	
-	bge $19, $21 troca5 # loop da ida
-	addi $19, $19, 2 # variacao do movimento
-	j fimpers5
-troca5:
-	addi $19 $0 0 # y = y inicial
-	j fimpers5
-fimpers5:
-
+	jal movimento
 	jal controle
 	
-# armazenamento de parametros do personagem 5: npc
-
 	addi $sp $sp 4
+	lw $9 0($sp)
+	
+	add $sp $sp $9
 	lw $8 0($sp)
+	sub $sp $sp $9
+	
 	addi $sp $sp -4
 	
 	jal storeparametro
-
-	# aqui pode-se incrementar mais personagens no jogo
 	
+	addi $sp $sp 4
+	lw $9 0($sp)
+	addi $9 $9 -4
+	j erase
+enderase:
 	j animacao
 
 fimanimacao:
+	j contador
 	
 end:
 	addi $2, $0, 10 # encerra o programa
@@ -595,10 +448,18 @@ storeparametro:
 	# altura do personagem: $14
 	# x: $25
 	# y: $26		
+
 personagem:  
 
 	sw $ra 0($sp)
 	addi $sp $sp -4
+	
+	addi $24 $0 0x10010000
+	add $24 $24 $22 # endereco do inicio do personagem na memoria
+	add $13, $0, $16 # base (colunas do desenho)
+	add $14, $0, $17 # altura (linhas do desenho)
+	add $25, $0, $18 # x
+	add $26, $0, $19 # y
 
 	lui $28, 0x1001
 	sll $25, $25, 2 # enderecos a percorrer no eixo x
@@ -607,6 +468,7 @@ personagem:
 	add $28, $28, $25
 	add $28, $28, $26 # posicao inicial a ser desenhada
 	add $27, $0, $13 # quantidade de colunas
+	
 laco1:	beq $14, $0, fimlaco1
 laco2:	beq $13, $0, fimlaco2
 	lw $1, 0($24) # local a ler
@@ -635,9 +497,14 @@ fimlaco1:
 	# Saber o x: $11
 	# Saber o y: $12
 carregafundo:  
-	
+
 	sw $ra 0($sp)
 	addi $sp $sp -4
+
+	add $9, $0, $16 # base (colunas do desenho)
+	add $10, $0, $17 # altura (linhas do desenho)
+	add $11, $0, $18 # x do canto superior esquerdo
+	add $12, $0, $19 # y do canto superior esquerdo
 
 	lui $28, 0x1001
 	sll $11, $11, 2 # enderecos a percorrer no eixo x
@@ -650,7 +517,7 @@ carregafundo:
 	add $8, $8, $11
 	add $8, $8, $12 # posicao inicial a ser copiada
 	lui $26 0x1001
-	addi $26 $26 66864
+	addi $26 $26 67088
 	lw $26 16($26)
 	add $12, $0, $26
 	sll $12, $12, 2
@@ -677,6 +544,24 @@ fimlaco2.1:
 	addi $10, $10, -1 # linahs--  
 	j laco1.1  
 fimlaco1.1: 
+	addi $sp $sp 4
+	lw $ra 0($sp)
+	jr $ra
+
+# funcao para controlar movimento
+movimento:
+	sw $ra 0($sp)
+	addi $sp $sp -4
+
+ida:	
+	bge $19, $21 troca # loop da ida
+	addi $19, $19, 4 # variacao do movimento
+	j fimpers
+troca:	
+	add $21 $0 $20
+	add $19 $0 $21 # y = y inicial
+	j fimpers
+fimpers:
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
@@ -712,36 +597,35 @@ controle:
 
 	sw $ra 0($sp)
 	addi $sp $sp -4
+	
+acerto1:  	
+	blt $19 45 naodig
+	jal tocarNota
+	j naodig
 
 	lui $8, 0xffff # tecla foi digitada
 	lw $11, 0($8)
 	beq $11, $0, naodig # se != 0 digitou algo
 	lw $13, 4($8) # tecla digitada pelo usuario
-	beq $23, $13, verde # se for a 
-	beq $23, $13, vermelha # se for s
-	beq $23, $13, amarela # se for d
-	beq $23, $13, azul # se for f
-	beq $23, $13, laranja # se for g
+	addi $12 $0 'a'
+	beq $12, $13, acerto # se acertar
+	addi $12 $0 's'
+	beq $12, $13, acerto # se acertar
+	addi $12 $0 'd'
+	beq $12, $13, acerto # se acertar
+	addi $12 $0 'f'
+	beq $12, $13, acerto # se acertar
+	addi $12 $0 'g'
+	beq $12, $13, acerto # se acertar
 	addi $12 $0 ' '
 	beq $12, $13, end # se for ' '
 	j naodig
 	
 # ajuste para o momento do acerto das notas
-verde:  	
-	bge $19 45 tocarNota
+acerto:  	
+	beq $19 46 naodig
+	jal tocarNota
 	j naodig
-vermelha: 	
-	bge $19 45 tocarNota
-	j naodig
-amarela: 	
-	bge $19 45 tocarNota
-	j naodig
-azul:	
-	bge $19 45 tocarNota
-	j naodig
-laranja:	
-	bge $19 45 tocarNota
-	j naodig	
 naodig:
 	# aqui pode-se fazer algo quando não há entrada de teclas
 	
@@ -755,16 +639,22 @@ tocarNota:
 	sw $ra 0($sp)
 	addi $sp $sp -4
 	
+	bgt $19 48 fimtocarnota
+	
 	addi $5 $0 2000 # milisegundo 
 	addi $6 $0 28 # 24 - 31 guitarra (0-127)
 	addi $7 $0 65 # volume (0-127)
 	
-	lw $4 0($30)
-	addi $30 $30 4
-	
-	addi $2 $0 1 # servico MIDI 31
+	lw $4 0($30) # nota atual
+	lui $10 0x1001
+	addi $10 $10 67084
+	bgt $10 $30 midi
+	addi $30 $10 -48
+midi:
+	addi $30 $30 4 # proxima nota
+	addi $2 $0 31 # servico MIDI 31
 	syscall
-	
+fimtocarnota:	
 	addi $sp $sp 4
 	lw $ra 0($sp)
 	jr $ra
