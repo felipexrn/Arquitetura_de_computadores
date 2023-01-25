@@ -524,14 +524,14 @@ pular:
 	addi $29 $0 24
 	
 naodig:
-	# aqui pode-se fazer algo quando não há entrada de teclas
+	# aqui pode-se fazer algo quando nï¿½o hï¿½ entrada de teclas
 
 # personagem pula	
 pulo:	
 	ble $29 $0 fimpers1
 	blt $19 1 fimpers1 
-	addi $29 $29 -1
-	addi $19, $19, -1 # incrementa endereco pra cima
+	addi $29 $29 -3
+	addi $19, $19, -3 # incrementa endereco pra cima
 	lw $28 24($2) # inicio
 	ble $28 68248 pulodir
 	addi $28 $0 69544
@@ -543,7 +543,12 @@ fimpulo:
 	
 # continua para o proximo personagem
 fimpers1:
-	
+
+gravidade:
+	bgt $19 45 endgravidade 
+	addi $19, $19, 1 # incrementa endereco pra baixo
+endgravidade:
+
 # armazenamento de parametros do personagem 1: protagonista
 	sw $22 0($2) # base  
 	sw $23 4($2) # altura 
