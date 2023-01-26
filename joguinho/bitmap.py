@@ -1,4 +1,4 @@
-image = open("./braulio.txt")
+image = open("./avatar.txt")
 bmp = image.read()
 hex = ""
 width = 106
