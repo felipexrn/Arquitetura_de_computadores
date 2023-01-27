@@ -1,5 +1,22 @@
 image = open("./img.txt")
 stream = image.read()
+
+'''
+image_data = "%ImageData:"
+index_img_data = stream.find(image_data)
+index_img_data += len(image_data)
+line_img_data = stream[index_img_data:]
+char = line_img_data[0]
+index_img_data = 0
+while char != "\n":
+  char = line_img_data[index_img_data]
+  index_img_data += 1
+line_img_data = line_img_data[:index_img_data]
+line_img_data = line_img_data.split()
+
+print(line_img_data)
+'''
+
 hex = ""
 width = 128
 height = 64
