@@ -1,20 +1,21 @@
-image = open("./avatar.txt")
-bmp = image.read()
+image = open("./img.txt")
+stream = image.read()
 hex = ""
-width = 106
+width = 128
+height = 64
 count = 0
 
-for i in range(len(bmp)):
-  if bmp[i] != "\n":
-    hex += bmp[i]
+for i in range(len(stream)):
+  if stream[i] != "\n":
+    hex += stream[i]
     count += 1
-  if count == width:
+  if count == width * 2:
     hex += "\n"
     count = 0
 
 hex = hex.split("\n")
 line = 3
-length = 212
+length = height * 4
 index = 0
 
 while length > 0: 
@@ -25,6 +26,7 @@ while length > 0:
   line -= 1
   length -= 1
   index += 1
+del hex[-1]
 
 #for i in hex:
 #  print(i)
@@ -33,10 +35,10 @@ map = ""
 map_line = ""
 prefix = " 0x"
 
-for i in range(159):
+for i in range(height * 3):
   if i % 3 == 0:
     map_line = ".word"
-    for j in range(106):
+    for j in range(width * 2):
       if j % 2 == 0:
         map_line += prefix
         map_line += hex[i][j] + hex[i][j+1]
